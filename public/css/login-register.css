@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* text-decoration: none;
+    font-family: "Poppins"; */
+}
+
+body {
+    background-color: #F4A300;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins";
+    min-height: 100vh;
+}
+
+header {
+    background-color: white;
+    color: #EA6932;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#logo {
+    width: 149,333px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.navbar {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+}
+
+header nav a {
+    color: #EA6932;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 15px;
+    /* border-radius: 5px;
+    border: 2px solid white;
+    padding: 5px; */
+}
+
+header nav a:hover {
+    background-color: #EA6932;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+    padding-right: 0px;
+}
+
+.formBox {
+    width: 450px;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 20px;
+    background-color: white;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    display: block;
+}
+
+.formBox h2 {
+    font-size: 36px;
+    text-align: center;
+    color: #EA6932;
+    margin-bottom: 15px;
+}
+
+.formBox p {
+    margin-bottom: 20px;
+    color: black;
+    font-size: 15px;
+}
+
+#sign-link {
+    text-decoration: underline;
+    color: #EA6932;
+}
+
+#sign-link:hover {
+    color: #F4A300;
+}
+
+.inputField {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.inputField input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#separator {
+    display: flex;
+    align-items: center;
+    margin: 0px 0;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #bbb;
+    border: none;
+    color: black;
+}
+
+#atau {
+    margin: 0 10px;
+    color: black;
+    font-size: 14px;
+}
+
+button {
+    background-color: #EA6932;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #F4A300;
+    font-size: 20px;
+}
+
+span{
+    margin: 10px 0;
+    display: block;
+    color: #EA6932;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#google-logo {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    padding-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#google {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding-top: 20px;
+}
+
+#captcha-rand:focus {
+    outline: none;
+    border: none;
+}
+
+/* select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #0a3b75;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    background-color: #f5f5f5;
+    margin: 10px 0;
+    appearance: none;
+}
+
+select:focus {
+    outline: none;
+    border-color: #0066cc;
+}
+
+select:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+} */

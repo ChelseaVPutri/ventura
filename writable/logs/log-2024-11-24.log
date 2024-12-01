@@ -1,0 +1,28 @@
+CRITICAL - 2024-11-24 17:55:41 --> ErrorException: Undefined variable $client
+[Method: GET, Route: /]
+in APPPATH\Views\LoginRegister\login.php on line 58.
+ 1 APPPATH\Views\LoginRegister\login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $client', 'C:\\xampp\\htdocs\\codeigniter4-framework-ventura\\app\\Views\\LoginRegister\\login.php', 58)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\codeigniter4-framework-ventura\\app\\Views\\LoginRegister\\login.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('LoginRegister/login', [], true)
+ 5 APPPATH\Controllers\LoginRegister.php(7): view('LoginRegister/login')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LoginRegister->login()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoginRegister))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-24 17:56:11 --> ErrorException: Undefined variable $client
+[Method: GET, Route: /]
+in APPPATH\Views\LoginRegister\login.php on line 58.
+ 1 APPPATH\Views\LoginRegister\login.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $client', 'C:\\xampp\\htdocs\\codeigniter4-framework-ventura\\app\\Views\\LoginRegister\\login.php', 58)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\codeigniter4-framework-ventura\\app\\Views\\LoginRegister\\login.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('LoginRegister/login', [], true)
+ 5 APPPATH\Controllers\LoginRegister.php(7): view('LoginRegister/login')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LoginRegister->login()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoginRegister))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
