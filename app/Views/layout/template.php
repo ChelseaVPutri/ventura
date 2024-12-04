@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= CSS.'homepage.css'; ?>">
   <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
-  <title><?php $title ?></title>
+  <title><?= $title ?></title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="icons">
       <img src="<?= ASSET.'Keranjang.svg'; ?>" alt="Cart" class="icon">
       <?php if(session()->get('username')): ?>
-        <a href="#" id="profile-text">Profile</a>
+        <a href="profile" id="profile-text">Profile</a>
       <?php else : ?>
         <nav>
           <a href="login">Login</a>

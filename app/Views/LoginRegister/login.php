@@ -2,18 +2,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS.'login-register.css'; ?>">
-    <link rel="icon" href="<?php echo ASSET.'logo.png'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?= CSS.'login-register.css'; ?>">
+    <link rel="icon" href="<?= ASSET.'logo.png'; ?>">
     <title><?= $title; ?></title>
 </head>
 <body>
 
     <header>
         <div class="navbar">
-            <img src="<?php echo ASSET.'logo.png'; ?>" id="logo">
+            <img src="<?= ASSET.'logo.png'; ?>" id="logo">
             <nav>
-                <a href="login.php">Login</a>
-                <a href="register.php">Register</a>
+                <a href="login">Login</a>
+                <a href="register">Register</a>
             </nav>
         </div>
     </header>
@@ -21,8 +21,8 @@
     <div class="formContainer">
         <div class="formBox">
             <h2>Login</h2>
-            <p>Belum punya akun? <a href="register.php" id="sign-link">Register</a></p>
-            <form method="post" action="<?= base_url('login/loginAction'); ?>">
+            <p>Belum punya akun? <a href="register" id="sign-link">Register</a></p>
+            <form method="post" action="<?= base_url('service/loginAction'); ?>">
                 <?php
                     if(session()->getFlashdata('gagal'))
                     {

@@ -11,8 +11,8 @@
         <div class="navbar">
             <img src="logo.png" id="logo">
             <nav>
-                <a href="login.php">Login</a>
-                <a href="/LoginRegister/register">Register</a>
+                <a href="login">Login</a>
+                <a href="register">Register</a>
             </nav>
         </div>
     </header>
@@ -20,7 +20,7 @@
     <div class="formContainer">
         <div class="formBox">
             <h2>Register</h2>
-            <p>Sudah punya akun? <a href="/LoginRegister/login" id="sign-link">Login</a></p>
+            <p>Sudah punya akun? <a href="login" id="sign-link">Login</a></p>
 
             <?php
                 if(session()->getFlashdata('eror')) {
@@ -28,7 +28,7 @@
                 }; 
             ?>
 
-            <form action="register/save" method="post">
+            <form action="service/save" method="post">
                 <div class="inputField">
                     <input type="email" id="username" name="email" placeholder="Email"required>
                 </div>
