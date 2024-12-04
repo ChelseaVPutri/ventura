@@ -1,4 +1,4 @@
-<?= $this->extend('layout/template.php'); ?>
+<?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
   <h2 style="text-align: center;">Produk Rekomendasi</h2>

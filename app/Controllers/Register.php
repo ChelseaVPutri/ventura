@@ -7,19 +7,19 @@ use App\Models\UserModel;
 class Register extends BaseController{
 
     protected $randnum;
-    protected $captcha;
 
     public function __construct()
     {
-        $this->randnum = rand(9999,1000);
-        $this->captcha = $this->randnum;
+
     }
 
     public function index(){
 
+        $this->randnum = rand(9999,1000);
+
         $data = [
             'title' => 'Register',
-            'randnum' => $this->captcha
+            'randnum' => $this->randnum
         ];
         return view('LoginRegister/register', $data);
     }
@@ -28,7 +28,7 @@ class Register extends BaseController{
 
         $user = new UserModel();
 
-        if($this->request->getPost('captcha') == $this->captcha){
+        if($this->request->getPost('captcha') == $this->request->getPost('captcha-random')){
             $user->save([
                 'email' => $this->request->getPost('email'),
                 'username' => $this->request->getPost('username'),
@@ -38,14 +38,15 @@ class Register extends BaseController{
     
             session()->set([
                 'email' => $this->request->getPost('email'),
-                'username' => $this->request->getPost('username')
+                'username' => $this->request->getPost('username'),
+                'user_id' => $user->getInsertID()
             ]);
     
-            return redirect()->to('Homepage');
+            return redirect()->to(base_url('homepage'));
         }
         else{
             session()->setFlashdata('eror', 'Captcha salah tjoy');
-            return redirect()->to('register');
+            return redirect()->to(base_url('register'));
         }
     }
 

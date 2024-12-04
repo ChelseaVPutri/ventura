@@ -22,12 +22,13 @@
             <h2>Register</h2>
             <p>Sudah punya akun? <a href="/LoginRegister/login" id="sign-link">Login</a></p>
 
-            <form action="register/save" method="post">
-                <?php
+            <?php
                 if(session()->getFlashdata('eror')) {
                     echo session()->getFlashdata('eror');
                 }; 
-                ?>
+            ?>
+
+            <form action="register/save" method="post">
                 <div class="inputField">
                     <input type="email" id="username" name="email" placeholder="Email"required>
                 </div>

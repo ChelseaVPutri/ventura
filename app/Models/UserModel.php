@@ -9,7 +9,8 @@ class UserModel extends Model {
     protected $allowedFields = ['username', 'email', 'password', 'token'];
 
     public function getData($username, $password) {
-        return $this->db->table('users')->where(array('username' => $username, 'password' => $password))->get()->getRowArray();
+        // return $this->db->table('users')->where(array('username' => $username, 'password' => $password))->get()->getRowArray();
+        return $this->where(['username' => $username, 'password' => $password])->first();
     }
 
     public function setData($username, $email, $password){

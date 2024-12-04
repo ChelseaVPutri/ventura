@@ -4,13 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS.'login-register.css'; ?>">
     <link rel="icon" href="<?php echo ASSET.'logo.png'; ?>">
-    <title>Login Page</title>
+    <title><?= $title; ?></title>
 </head>
 <body>
-
-    <?php 
-    $rand = rand(9999, 1000);
-    ?>
 
     <header>
         <div class="navbar">
@@ -28,14 +24,14 @@
             <p>Belum punya akun? <a href="register.php" id="sign-link">Register</a></p>
             <form method="post" action="<?= base_url('login/loginAction'); ?>">
                 <?php
-                if(isset($error)) {
-                    foreach($error as $error) {
-                        echo '<span class="error-msg">'.$error.'</span>';
-                    };
-                }; 
+                    if(session()->getFlashdata('gagal'))
+                    {
+                        echo session()->getFlashdata('gagal');
+                        session()->reset;
+                    } 
                 ?>
                 <div class="inputField">
-                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="text" id="username" name="username" placeholder="Username" required autofocus>
                 </div>
                 <div class="inputField">
                     <input type="password" id="username" name="password" placeholder="Password"required>
@@ -43,7 +39,7 @@
                 <div class="inputField" style="display: flex;">
                     <input style="width: 50%;" type="text" id="captcha" name="captcha" placeholder="Masukkan kode captcha"required>
                     <input style="width: 20%; display:flex; align-items: center; flex: 1; border: none; outline: none; color: #EA6932; font-weight: bold;"
-                    id="captcha-rand" name="captcha-random" value="<?php echo $rand; ?>" readonly>
+                    id="captcha-rand" name="captcha-random" value="<?= $rand; ?>" readonly>
                 </div>
                 
                 <button type="submit" name="submit" value="register">Login</button>

@@ -43,6 +43,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Homepage::index');
 
+$routes->get('/login', 'Login::index');
+$routes->get('/register', 'Register::index');
+
 //rute admin
 // $routes->get('admin/login', 'Admin\AdminLogin::login');
 // $routes->post('admin/login', 'Admin\AdminLogin::login');
