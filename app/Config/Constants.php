@@ -77,7 +77,7 @@ defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7);     // invalid u
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8);       // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9);      // lowest automatically-assigned error code
 
-defined('BASEURL')      || define('BASEURL', 'http://localhost/codeigniter4-framework-ventura/');    // highest automatically-assigned error code
+defined('BASEURL')      || define('BASEURL', 'http://localhost/ventura/');    // highest automatically-assigned error code
 defined('CSS')      || define('CSS', BASEURL.'public/css/');    // highest automatically-assigned error code
 defined('ASSET')      || define('ASSET', BASEURL.'public/assets/');    // highest automatically-assigned error code
 defined('JS')      || define('JS', BASEURL.'public/js/');    // highest automatically-assigned error code

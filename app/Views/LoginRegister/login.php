@@ -26,7 +26,7 @@
         <div class="formBox">
             <h2>Login</h2>
             <p>Belum punya akun? <a href="register.php" id="sign-link">Register</a></p>
-            <form method="post" action="<?= base_url('login/login_action'); ?>">
+            <form method="post" action="<?= base_url('login/loginAction'); ?>">
                 <?php
                 if(isset($error)) {
                     foreach($error as $error) {

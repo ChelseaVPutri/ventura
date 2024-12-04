@@ -7,9 +7,6 @@
     <link rel="icon" href="<?php echo ASSET.'logo.png'; ?>">
 </head>
 <body>
-    <?php 
-    $rand = rand(9999, 1000);
-    ?>
     <header>
         <div class="navbar">
             <img src="logo.png" id="logo">
@@ -25,12 +22,10 @@
             <h2>Register</h2>
             <p>Sudah punya akun? <a href="/LoginRegister/login" id="sign-link">Login</a></p>
 
-            <form method="post">
+            <form action="register/save" method="post">
                 <?php
-                if(isset($error)) {
-                    foreach($error as $error) {
-                        echo '<span class="error-msg">'.$error.'</span>';
-                    };
+                if(session()->getFlashdata('eror')) {
+                    echo session()->getFlashdata('eror');
                 }; 
                 ?>
                 <div class="inputField">
@@ -45,7 +40,7 @@
                 <div class="inputField" style="display: flex;">
                     <input style="width: 50%;" type="text" id="captcha" name="captcha" placeholder="Masukkan kode captcha"required>
                     <input style="width: 20%; display:flex; align-items: center; flex: 1; border: none; outline: none; color: #EA6932; font-weight: bold;"
-                    id="captcha-rand" name="captcha-random" value="<?php echo $rand; ?>" readonly>
+                    id="captcha-rand" name="captcha-random" value="<?= $randnum; ?>" readonly>
                 </div>
 
 
