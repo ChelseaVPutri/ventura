@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="navbar">
-            <img src="logo.png" id="logo">
+            <img src="<?php echo CSS.'login-register.css'; ?>" id="logo">
             <nav>
                 <a href="login">Login</a>
                 <a href="register">Register</a>
