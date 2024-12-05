@@ -46,6 +46,7 @@ $routes->get('/', 'Pages::home');
 $routes->get('/login', 'Pages::login');
 $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
+$routes->get('/callback', 'Auth::callback');
 
 //rute admin
 // $routes->get('admin/login', 'Admin\AdminLogin::login');
