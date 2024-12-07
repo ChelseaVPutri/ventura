@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\UserModel;
+use App\Models\UsersModel;
 
 class Service extends BaseController {
 
     public function loginAction() {
-        $model_user = new UserModel();
+        $model_user = new UsersModel();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
         $cek = $model_user->getData($username, $password);
@@ -40,7 +40,7 @@ class Service extends BaseController {
     
     public function save(){
         
-        $user = new UserModel();
+        $user = new UsersModel();
         
         if($this->request->getPost('captcha') == $this->request->getPost('captcha-random')){
             $user->save([
