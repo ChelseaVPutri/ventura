@@ -8,7 +8,7 @@
       <div class="product-card">
         <img src="<?= ASSET . $p['img'] ?>" alt="product-image">
         <p><?= $p['name']; ?></p>
-        <p class="price"><?= $p['price']; ?></p>
+        <p class="price" style="color: #EA6932;">Rp<?= number_format($p['price'], 0, ',', '.'); ?></p>
       </div>
     <?php endforeach; ?>
 
