@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
     <header>
         <div class="navbar">
-            <img src="logo.png" id="logo">
+            <img src="<?php echo ASSET.'logo.png'; ?>" id="logo">
             <nav>
                 <a href="login">Login</a>
                 <a href="register">Register</a>
@@ -28,7 +29,7 @@
                 }; 
             ?>
 
-            <form action="service/save" method="post">
+            <form action="" method="post">
                 <div class="inputField">
                     <input type="email" id="username" name="email" placeholder="Email"required>
                 </div>
@@ -54,9 +55,9 @@
                     <hr class="line">
                 </div>
                 
-                <div class="inputField" id="google-logo">
-                  
-                        <img src="/uts/assets/google.png" id="google" style="width: 100%; height: 50px; padding-top: 10px;">
+                <div class="inputField" id="google-logo" style="justify-content: center; align-items: center;">
+                    <a href="<?= base_url('auth/loginGoogle'); ?>">
+                        <img src="<?php echo ASSET.'google.png'; ?>" id="google" style="width: 100%; padding-top: 10px; margin-top: 20px; height: 70px">
                     </a>
                 </div>
             </form>
