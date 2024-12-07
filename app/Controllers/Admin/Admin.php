@@ -7,8 +7,8 @@ use CodeIgniter\Config\Config;
 
 class Admin extends BaseController
 {
-    // protected $model_admin;
-    // protected $validation;
+    protected $model_admin;
+    protected $validation;
     function __construct() {
         $this->model_admin = new AdminModel();
         $this->validation = \Config\Services::validation();

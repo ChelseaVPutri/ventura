@@ -47,12 +47,16 @@
                                         <?php
                                         }
                                         ?>
-                                        <form method="post" action="">
-                                            <!-- <//?php if(session()->getFlashdata('error')) { ?>
+                                        <form method="post" action="<?= base_url('adminpages/loginadmin'); ?>">
+                                            <?php if(session()->getFlashdata('notfound')) : ?>
                                                 <div class="alert alert-danger">
-                                                    <?php echo session()->getFlashdata('error') ?>
+                                                    <?php echo session()->getFlashdata('notfound') ?>
                                                 </div>
-                                            <//?php } ?> -->
+                                            <?php elseif(session()->getFlashdata('gagal')) : ?>
+                                                <div class="alert alert-danger">
+                                                    <?php echo session()->getFlashdata('gagal') ?>
+                                                </div>
+                                            <?php endif ?>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputUsername" type="text" placeholder="username" name="username"
                                                 value="<?php echo session()->getFlashdata('username'); ?>"/>

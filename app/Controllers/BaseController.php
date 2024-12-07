@@ -7,7 +7,10 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use PHPUnit\Event\Telemetry\GarbageCollectorStatus;
 use Psr\Log\LoggerInterface;
+
+use function Symfony\Component\String\b;
 
 /**
  * Class BaseController
@@ -27,6 +30,7 @@ abstract class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
+    protected $productModel;
 
     /**
      * An array of helpers to be loaded automatically upon
@@ -56,7 +60,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         // $this->UserModel = new \App\Models\UserModel();
         $autoload['libraries'] = array('session');
-        $this->productModel = new \App\Models\ProductModel();
+        $this->productModel = new \App\Controllers\Product();
         
     }
 }

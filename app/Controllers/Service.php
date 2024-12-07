@@ -11,21 +11,27 @@ class Service extends BaseController {
         $password = $this->request->getPost('password');
         $cek = $model_user->getData($username, $password);
 
-        if($this->request->getPost('captcha') == $this->request->getPost('captcha-random')){
-            if(($cek['username'] == $username) && ($cek['password'] == $password)) {
-                session()->set([
-                    'email' => $cek['email'],
-                    'username' => $cek['username'],
-                    'user_id' => $cek['user_id'],
-                ]);
-                return redirect()->to(base_url());
-            } else {
-                session()->setFlashdata('gagal', 'Username/Password salah');
+        if($cek){
+            if($this->request->getPost('captcha') == $this->request->getPost('captcha-random')){
+                if(($cek['username'] == $username) && ($cek['password'] == $password)) {
+                    session()->set([
+                        'email' => $cek['email'],
+                        'username' => $cek['username'],
+                        'user_id' => $cek['user_id'],
+                    ]);
+                    return redirect()->to(base_url());
+                } else {
+                    session()->setFlashdata('gagal', 'Username/Password salah');
+                    return redirect()->to(base_url('login'));
+                }
+            }
+            else{
+                session()->setFlashdata('eror', 'Captcha salah tjoy');
                 return redirect()->to(base_url('login'));
             }
         }
         else{
-            session()->setFlashdata('eror', 'Captcha salah tjoy');
+            session()->setFlashdata('notfound', 'akun belum terdaftar tjoy');
             return redirect()->to(base_url('login'));
         }
 
@@ -57,9 +63,13 @@ class Service extends BaseController {
             return redirect()->to(base_url('register'));
         }
     }
+
+    public function adminreq() {
+        
+    }
     
     public function logout() {
         session()->destroy();
-        return redirect()->to(base_url('login'));
+        return redirect()->to(base_url());
     }
 }    

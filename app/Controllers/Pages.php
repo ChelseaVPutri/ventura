@@ -2,13 +2,16 @@
 
 namespace App\Controllers;
 use App\Controllers\BaseController;
+use App\Controllers\Product;
 
 class Pages extends BaseController{
     public function home(){
+
         $data = [
-            'title' => 'Beranda'
+            'title' => 'Beranda',
+            'dataproduk' => $this->productModel->show()
         ];
-        return view('homepage', $data);
+        return view('Pages/homepage', $data);
     }
     
     public function login(){
@@ -16,7 +19,7 @@ class Pages extends BaseController{
             'title' => 'Login',
             'rand' => rand(9999,1000)
         ];
-        return view('LoginRegister/login', $data);
+        return view('Pages/login', $data);
     }
     
     public function register(){
@@ -25,12 +28,12 @@ class Pages extends BaseController{
             'title' => 'Register',
             'randnum' => rand(9999,1000)
         ];
-        return view('LoginRegister/register', $data);
+        return view('Pages/register', $data);
         
     }
     
     public function profile(){
-        return view('profile');
+        return view('Pages/profile');
     }
 
     public function cart(){
