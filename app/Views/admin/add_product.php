@@ -43,7 +43,7 @@ use PHPUnit\TextUI\XmlConfiguration\Validator;
                 <img src="<?= ASSET. $p['img']; ?>" alt="Product Image">
                 <div class="product-info">
                     <p><?= $p['name']; ?></p>
-                    <p class="price" style="color: #EA6932;"><?= number_format($p['price'], 0, ',', '.'); ?></p>
+                    <p class="price" style="color: #EA6932;">Rp<?= number_format($p['price'], 0, ',', '.'); ?></p>
                     <div class="product-actions">
                         <a href="../Product/delproduct/<?= $p['product_id']; ?>"><button class="delete-button">Hapus</button></a>
                         <a href="../Product/viewadmin/<?= $p['product_id']; ?>"><button class="view-button">Lihat</button></a>
