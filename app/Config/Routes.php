@@ -47,10 +47,7 @@ $routes->get('/login', 'Pages::login');
 $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
 $routes->get('/callback', 'Auth::callback');
+$routes->get('product/(:segment)', 'Product::detail/$id');
 
 $routes->get('/admin/login', 'AdminPages::index');
 $routes->get('/admin/productmanager', 'AdminPages::managepd');
-
-//rute admin
-// $routes->get('admin/login', 'Admin\AdminLogin::login');
-// $routes->post('admin/login', 'Admin\AdminLogin::login');

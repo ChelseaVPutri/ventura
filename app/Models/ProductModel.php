@@ -6,7 +6,8 @@ use CodeIgniter\Model;
 class ProductModel extends Model {
 
     protected $table = 'products';
-    protected $allowedFields = ['name', 'price', 'stock', 'description', 'img', 'category_id'];
+    protected $primaryKey = 'product_id';
+    protected $allowedFields = ['product_id', 'name', 'price', 'stock', 'description', 'img', 'category_id'];
 
     protected $useTimestamp = true;
     protected $updatedField = 'updated_at';
