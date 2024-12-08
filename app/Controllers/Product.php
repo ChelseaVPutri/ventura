@@ -17,7 +17,10 @@ class Product extends BaseController {
     }
 
     public function detail($id){
-
+        // $product = $this->dataproduk->where('product_id', $id)->first();
+        $data['product'] = $this->dataproduk->find($id);
+        return view('pages/product-detail', $data);
+        // return redirect()->to(base_url('/product/detail/'.$id));
     }
 
     public function viewadmin($id){
