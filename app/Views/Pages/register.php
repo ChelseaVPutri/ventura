@@ -29,7 +29,7 @@
                 }; 
             ?>
 
-            <form action="" method="post">
+            <form action="service/save" method="post">
                 <div class="inputField">
                     <input type="email" id="username" name="email" placeholder="Email"required>
                 </div>

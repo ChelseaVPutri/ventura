@@ -12,7 +12,9 @@ class UsersModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = false;
-    protected $allowedFields    = ['oauth_id', 'username', 'email', 'last_login', 'created_at'];
+    // protected $allowedFields    = ['oauth_id', 'username', 'email', 'last_login', 'created_at'];
+    protected $allowedFields    = ['username', 'email', 'password'];
+
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -22,9 +24,9 @@ class UsersModel extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime';
+    // protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $updatedField  = '';
     protected $deletedField  = 'deleted_at';
 
     // // Validation
