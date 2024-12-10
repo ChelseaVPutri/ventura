@@ -24,7 +24,7 @@
 
     <div class="product-container" style="display: grid; grid-template-columns: auto auto auto auto;">
         <?php if(empty($dataproduk)) : ?>
-            <p style="text-align: center; font-size: 1.2rem; color: #555;">Wishlist Anda kosong.</p>
+            <p style="text-align: center; font-size: 1.2rem; color: #555;">Wishlist Kosong</p>
         <?php else : ?>
             <?php foreach($dataproduk as $p) : ?>
                 <a href="<?= base_url('product/detail/'.$p['product_id']); ?>" style="text-decoration: none;">
@@ -32,8 +32,13 @@
                         <img src="<?= ASSET . $p['img'] ?>" alt="product-image">
                         <p><?= $p['name']; ?></p>
                         <p class="price" style="color: #EA6932; text-align: center;">Rp<?= number_format($p['price'], 0, ',', '.'); ?></p>
-                    </div>
                 </a>
+                        <form action="<?= base_url('wishlist/delWishlist/' . $p['product_id']); ?>" method="post">
+                            <button type="submit" class="remove-button"
+                            style="background-color:#ef233c; border:none; cursor:pointer; font-size:14px; padding: 5px 10px; color: white; margin-top: 5px; border-radius: 5px;">
+                            Hapus</button>
+                        </form>
+                    </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

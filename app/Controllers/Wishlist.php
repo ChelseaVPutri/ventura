@@ -33,7 +33,10 @@ class Wishlist extends BaseController {
     }
 
     public function delWishlist($product_id) {
-        //
+        $user_id = session()->get('user_id');
+        $this->wishlistmodel->where('user_id', $user_id)->where('product_id', $product_id)->delete();
+        session()->setFlashdata('success', 'Produk berhasil dihapus dari wishlist.');
+        return redirect()->back();
     }
 
     public function index() {
