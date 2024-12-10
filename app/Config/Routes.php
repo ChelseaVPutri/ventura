@@ -48,6 +48,6 @@ $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
 $routes->get('/callback', 'Auth::callback');
 $routes->get('product/(:segment)', 'Product::detail/$id');
-
+$routes->get('/cart', 'Cart::index');
 $routes->get('/admin/login', 'AdminPages::index');
 $routes->get('/admin/productmanager', 'AdminPages::managepd');

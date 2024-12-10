@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Controllers\BaseController;
 use App\Models\UsersModel;
 
 class Service extends BaseController {
@@ -38,7 +40,7 @@ class Service extends BaseController {
     }
 
     
-    public function save(){
+    protected function save(){
         
         $user = new UsersModel();
         

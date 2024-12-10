@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <a href="<?= base_url('/'); ?>">
+        <a href="<?= base_url(); ?>">
             <button class="back-button">&#8592;</button></a>
         <h2 style="text-align: center;">Detail Produk</h2>
     </header>
@@ -33,8 +33,8 @@
                 </p>
                 
                 <div class="quantity-section">
-                    <form action="" method="post">
-                        <input class="quantity-input" type="number" value="1" min="1" name="qty_add">
+                    <form action="<?= base_url('cart/addcart/') . $product['product_id']; ?>" method="post">
+                        <input class="quantity-input" type="number" value="1" min="1" max="<?= $product['stock']; ?>" name="qty_add">
                         <button class="cart-button" name="add_cart">Masukkan ke Keranjang</button>
                         <button class="cart-button" name="wishlit_cart">Tambahkan ke Wishlist</button>
                     </form>

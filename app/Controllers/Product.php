@@ -24,10 +24,10 @@ class Product extends BaseController {
     }
 
     public function viewadmin($id){
-
+        
     }
 
-    public function addproduct(){
+    protected function addproduct(){
         $img = $this->request->getFile('img');
 
         $img->move('assets');
@@ -63,12 +63,15 @@ class Product extends BaseController {
         // }
     }
 
-    public function updproduct($id)
+    protected function updproduct($id)
     {
-        $set = $this->dataproduk->where('product_id', $id,);
+        $set = [
+            'id' => $id,
+            ''
+        ];
     }
 
-    public function delproduct($id)
+    protected function delproduct($id)
     {
         // $this->dataproduk->delete($id);
         // session()->setFlashdata('success', 'Dihapus');
