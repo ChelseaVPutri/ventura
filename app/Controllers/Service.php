@@ -40,7 +40,7 @@ class Service extends BaseController {
     }
 
     
-    protected function save(){
+    public function save(){
         
         $user = new UsersModel();
         
@@ -58,7 +58,7 @@ class Service extends BaseController {
                 'user_id' => $user->getInsertID()
             ]);
     
-            return redirect()->to(base_url());
+            return redirect()->to(base_url('/'));
         }
         else{
             session()->setFlashdata('eror', 'Captcha salah tjoy');

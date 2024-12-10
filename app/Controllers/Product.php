@@ -26,21 +26,11 @@ class Product extends BaseController {
         // return redirect()->to(base_url('/product/detail/'.$id));
     }
 
-    public function addToWishlist($product_id) {
-        $user_id = session()->get('user_id');
-        $data = ['user_id' => $user_id, 'product_id' => $product_id];
-        
-        if($this->datawishlist->insert($data)) {
-            session()->setFlashdata('success', 'Barang Berhasil Ditambahkan ke Wishlist');
-        }
-      
-    }
-
     public function viewadmin($id){
         
     }
 
-    protected function addproduct(){
+    public function addproduct(){
         $img = $this->request->getFile('img');
 
         $img->move('assets');
@@ -84,7 +74,7 @@ class Product extends BaseController {
         ];
     }
 
-    protected function delproduct($id)
+    public function delproduct($id)
     {
         // $this->dataproduk->delete($id);
         // session()->setFlashdata('success', 'Dihapus');
