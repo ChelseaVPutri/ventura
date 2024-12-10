@@ -46,6 +46,8 @@ $routes->get('/', 'Pages::home');
 $routes->get('/login', 'Pages::login');
 $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
+$routes->get('/wishlist', 'Pages::wishlist');
+$routes->post('wishlist/addToWishlist/(:num)','Product::addToWishlist/$product_id');
 $routes->get('/callback', 'Auth::callback');
 $routes->get('product/(:segment)', 'Product::detail/$id');
 $routes->get('/cart', 'Cart::index');

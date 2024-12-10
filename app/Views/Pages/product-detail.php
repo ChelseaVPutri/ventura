@@ -8,6 +8,11 @@
     <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
 </head>
 <body>
+    <?php if(session()->getFlashdata('success')) : ?>
+        <div id="alert-success" style="display: none; background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; position: fixed; top: 20px; right: 20px; z-index: 1000;">
+            <?= session()->getFlashdata('success'); ?>
+        </div>
+    <?php endif; ?>
 
     <header>
         <a href="<?= base_url(); ?>">
@@ -36,7 +41,9 @@
                     <form action="<?= base_url('cart/addcart/') . $product['product_id']; ?>" method="post">
                         <input class="quantity-input" type="number" value="1" min="1" max="<?= $product['stock']; ?>" name="qty_add">
                         <button class="cart-button" name="add_cart">Masukkan ke Keranjang</button>
-                        <button class="cart-button" name="wishlit_cart">Tambahkan ke Wishlist</button>
+                    </form>
+                    <form action="<?= base_url('wishlist/addWishlist/'. $product['product_id']); ?>" method="post">
+                        <button class="cart-button" name="wishlit_cart" style="margin-left: 10px;">Tambahkan ke Wishlist</button>
                     </form>
                 </div>
                 <!-- <i style="color: green;"><//?php echo $masuk;?></i> -->

@@ -17,6 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
   <link rel="stylesheet" href="<?= CSS . 'profile.css'?>">
+  <link rel="icon" href="<?= ASSET.'logo.png'; ?>">
 </head>
 <body>
 <header>
@@ -29,8 +30,10 @@
     <div class="profile">
       <div class="profile-name"><?= session()->get('username') ?></div>
       <div class="profile-email"><?= session()->get('email')?></div>
-      <a href="#" class="button1">Keranjang</a>
-      <a href="#" class="button1">Wishlist</a>
+      <a href="<?= base_url('/cart'); ?>" class="button1">Keranjang</a>
+      <a href="<?= base_url('/wishlist'); ?>" class="button1">Wishlist</a>
+      <a href="#" class="button1">Daftar Pesanan</a>
+      <a href="#" class="button1">Daftar Alamat</a>
       <a href="service/logout" class="button1">Logout</a>
     </div>
   </div>

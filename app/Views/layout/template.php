@@ -16,9 +16,9 @@
     </div>
     <input type="text" placeholder="Cari di Ventura" class="search-bar">
     <div class="icons">
-      <a href="cart"><img src="<?= ASSET.'Keranjang.svg'; ?>" alt="Cart" class="icon"></a>
-      <img src="<?= ASSET.'wishlist.svg'; ?>" alt="Cart" class="icon" style="color: #EA6932;">
       <?php if(session()->get('username')): ?>
+        <a href="cart"><img src="<?= ASSET.'Keranjang.svg'; ?>" alt="Cart" class="icon"></a>
+        <a href="<?= base_url('/wishlist'); ?>"><img src="<?= ASSET.'wishlist.svg'; ?>" alt="Cart" class="icon" style="color: #EA6932;"></a>
         <a href="profile" id="profile-text">Profile</a>
       <?php else : ?>
         <nav>

@@ -29,7 +29,7 @@
                 }; 
             ?>
 
-            <form action="service/save" method="post">
+            <form action="<?= base_url('/service/save') ?>" method="post">
                 <div class="inputField">
                     <input type="email" id="username" name="email" placeholder="Email"required>
                 </div>
@@ -49,17 +49,17 @@
                 
                 <button type="submit" name="submit" value="register">Register</button>
                 
-                <div class="inputField" id="separator">
+                <!-- <div class="inputField" id="separator">
                     <hr class="line">
                     <p id="atau">ATAU</p>
                     <hr class="line">
-                </div>
+                </div> -->
                 
-                <div class="inputField" id="google-logo" style="justify-content: center; align-items: center;">
-                    <a href="<?= base_url('auth/loginGoogle'); ?>">
-                        <img src="<?php echo ASSET.'google.png'; ?>" id="google" style="width: 100%; padding-top: 10px; margin-top: 20px; height: 70px">
+                <!-- <div class="inputField" id="google-logo" style="justify-content: center; align-items: center;">
+                    <a href="<//?= base_url('auth/loginGoogle'); ?>">
+                        <img src="<//?php echo ASSET.'google.png'; ?>" id="google" style="width: 100%; padding-top: 10px; margin-top: 20px; height: 70px">
                     </a>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

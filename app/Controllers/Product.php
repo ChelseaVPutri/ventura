@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 use App\Models\ProductModel;
+use App\Models\WishlistModel;
 
 class Product extends BaseController {
 
     protected $dataproduk;
+    protected $datawishlist;
 
     public function __construct()
     {
         $this->dataproduk = new ProductModel();
+        $this->datawishlist = new WishlistModel();
     }
 
     public function show(){
@@ -21,6 +24,16 @@ class Product extends BaseController {
         $data['product'] = $this->dataproduk->find($id);
         return view('pages/product-detail', $data);
         // return redirect()->to(base_url('/product/detail/'.$id));
+    }
+
+    public function addToWishlist($product_id) {
+        $user_id = session()->get('user_id');
+        $data = ['user_id' => $user_id, 'product_id' => $product_id];
+        
+        if($this->datawishlist->insert($data)) {
+            session()->setFlashdata('success', 'Barang Berhasil Ditambahkan ke Wishlist');
+        }
+      
     }
 
     public function viewadmin($id){

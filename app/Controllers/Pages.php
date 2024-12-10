@@ -39,4 +39,8 @@ class Pages extends BaseController{
     public function cart(){
 
     }
+
+    public function wishlist() {
+        return view('Pages/wishlist');
+    }
 }
