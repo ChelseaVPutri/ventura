@@ -22,7 +22,7 @@ class Cart extends BaseController{
     public function index(){
 
         if(session()->get('user_id') == ''){
-            echo 'lu blom login dongo';
+            session()->setFlashdata('eror','login dlu bego');
             return redirect()->to(base_url('login'));
         }else{
             $usercart = $this->cartbase->where('user_id', session()->get('user_id'))->findAll();
@@ -35,12 +35,18 @@ class Cart extends BaseController{
         }
 
         // dd($products);
-
-        $data = [
-            'title' => 'Keranjangmu',
-            'dataprod' => $products,
-            'usercart' => $usercart,
-        ];
+        if(!empty($products)){
+            $data = [
+                'title' => 'Keranjangmu',
+                'dataprod' => $products,
+                'usercart' => $usercart,
+            ];
+        }else{
+            $data = [
+                'title' => 'Keranjangmu',
+            ];
+            session()->setFlashdata('kosonk', 'Keranjang lu kosong bjirt');
+        }
         return view('pages/cart',$data);
     }
 

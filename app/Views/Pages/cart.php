@@ -45,8 +45,11 @@
             <label for="select-all">Pilih Semua</label>
         </div> -->
         <?php
-            $count = 0;
-            foreach($dataprod as $cd) :
+            if(session()->getFlashdata('kosonk')) :
+                echo session()->getFlashdata('kosonk');
+            else:
+                $count = 0;
+                foreach($dataprod as $cd) :
                   ?>
                     <div class="cart-item">
                         <!-- <input type="checkbox"> -->
@@ -63,6 +66,7 @@
             <?php
                 $count++;
                 endforeach;
+            endif;
               ?>
     </div>
 </div>

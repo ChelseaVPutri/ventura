@@ -26,6 +26,10 @@ class Product extends BaseController {
         // return redirect()->to(base_url('/product/detail/'.$id));
     }
 
+    public function search($name){
+        return $this->dataproduk->like('name', $name);
+    }
+
     public function viewadmin($id){
         
     }
@@ -40,6 +44,7 @@ class Product extends BaseController {
             'price' => $this->request->getPost('price'),
             'stock' => $this->request->getPost('stock'),
             'description' => $this->request->getPost('description'),
+            'catergory_id' => $this->request->getPost('kategori'),
             'img' => $img->getName(),
         ];
     

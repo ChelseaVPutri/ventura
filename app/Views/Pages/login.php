@@ -33,10 +33,10 @@
                     }
                 ?>
                 <div class="inputField">
-                    <input type="text" id="username" name="username" placeholder="Username" required autofocus>
+                    <input type="text" id="username" name="username" placeholder="Username" value="<?= old('username'); ?>" required autofocus>
                 </div>
                 <div class="inputField">
-                    <input type="password" id="username" name="password" placeholder="Password"required>
+                    <input type="password" id="username" name="password" placeholder="Password" required>
                 </div>
                 <div class="inputField" style="display: flex;">
                     <input style="width: 50%;" type="text" id="captcha" name="captcha" placeholder="Masukkan kode captcha"required>
