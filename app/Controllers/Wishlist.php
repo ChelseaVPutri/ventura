@@ -23,7 +23,7 @@ class Wishlist extends BaseController {
 
         $existWishlist = $this->wishlistmodel->where('user_id', $user_id)->where('product_id', $product_id)->first();
         if($existWishlist) {
-            session()->setFlashdata('Produk ini sudah ada di wishlist');
+            session()->setFlashdata('error', 'Produk ini sudah ada di wishlist');
         } else {
             $data = ['user_id' => $user_id, 'product_id' => $product_id];
             $this->wishlistmodel->insert($data);

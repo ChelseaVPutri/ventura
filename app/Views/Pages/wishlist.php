@@ -16,12 +16,6 @@
         <h2 style="text-align: center;">Wishlist</h2>
     </header>
 
-    <?php if (session()->getFlashdata('success')) : ?>
-        <div class="alert-success"><?= session()->getFlashdata('success'); ?></div>
-    <?php elseif (session()->getFlashdata('error')) : ?>
-        <div class="alert-error"><?= session()->getFlashdata('error'); ?></div>
-    <?php endif; ?>
-
     <div class="product-container" style="display: grid; grid-template-columns: auto auto auto auto;">
         <?php if(empty($dataproduk)) : ?>
             <p style="text-align: center; font-size: 1.2rem; color: #555;">Wishlist Kosong</p>
@@ -35,7 +29,7 @@
                 </a>
                         <form action="<?= base_url('wishlist/delWishlist/' . $p['product_id']); ?>" method="post">
                             <button type="submit" class="remove-button"
-                            style="background-color:#ef233c; border:none; cursor:pointer; font-size:14px; padding: 5px 10px; color: white; margin-top: 5px; border-radius: 5px;">
+                            style="background-color:#ef233c; border:none; cursor:pointer; font-size:14px; padding: 5px 10px; color: white; margin-top: 5px; border-radius: 5px; text-decoration: none">
                             Hapus</button>
                         </form>
                     </div>

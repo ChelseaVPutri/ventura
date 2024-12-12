@@ -8,11 +8,6 @@
     <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
 </head>
 <body>
-    <?php if(session()->getFlashdata('success')) : ?>
-        <div id="alert-success" style="display: none; background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; position: fixed; top: 20px; right: 20px; z-index: 1000;">
-            <?= session()->getFlashdata('success'); ?>
-        </div>
-    <?php endif; ?>
 
     <header>
         <a href="<?= base_url(); ?>">
@@ -32,6 +27,7 @@
                 <object name="product_price">
                     <p class="price" style="color: #e74c3c">Rp<?= number_format($product['price'], 0, ',', '.'); ?></p>
                 </object>
+                <p style="margin-bottom: 15px;"><strong>Stok Tersedia: </strong><?= $product['stock'] ?></p>
                 <h3>Deskripsi</h3>
                 <p class="description">
                     <?= $product['description']; ?>
@@ -46,10 +42,29 @@
                         <button class="cart-button" name="wishlit_cart" style="margin-left: 10px;">Tambahkan ke Wishlist</button>
                     </form>
                 </div>
+
+                <?php if (session()->getFlashdata('success')) : ?>
+                <div class="alert alert-success" style="color: green">
+                    <?= session()->getFlashdata('success'); ?>
+                </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('error')) : ?>
+                <div class="alert alert-danger" style="color: red">
+                    <?= session()->getFlashdata('error'); ?>
+                </div>
+                <?php endif; ?>
                 <!-- <i style="color: green;"><//?php echo $masuk;?></i> -->
             </div>
         </div>
     </div>
+
+    <script>
+        const alert_message = '<?= session()->getFlashdata('alert') ?>'
+        if(alert_message) {
+            alert(alert_message);
+        }
+    </script>
 
 </body>
 </html>
