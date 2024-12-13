@@ -17,7 +17,7 @@ class Wishlist extends BaseController {
         $user_id = session()->get('user_id');
 
         if (!$user_id) {
-            session()->setFlashdata('error', 'login dulu kocaG');
+            // session()->setFlashdata('alert', 'Silakan login terlebih dahulu');
             return redirect()->to('/login'); // Redirect ke halaman login jika user belum login
         }
 
