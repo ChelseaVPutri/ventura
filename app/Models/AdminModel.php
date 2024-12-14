@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class AdminModel extends Model {
     protected $table = "admin";
     protected $primary_key = 'admin_id';
-    protected $allowed_fields = ['username', 'password', 'token']; //field atau kolom apa saja yg boleh diubah
+    protected $allowed_fields = ['username', 'password']; //field atau kolom apa saja yg boleh diubah
 
     public function getData($username) {
         //untuk ambil data

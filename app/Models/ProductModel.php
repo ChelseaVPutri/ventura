@@ -13,4 +13,8 @@ class ProductModel extends Model {
     protected $updatedField = 'updated_at';
     protected $createdField = 'created_at';
 
+    public function search($keyword){
+        return $this->like('name', $keyword)->orLike('category_id', $keyword)->findAll();
+    }
+
 }

@@ -15,7 +15,7 @@
 
     <div class="container">
         <?php 
-        if(! empty($errors)){
+        if(!empty($errors)){
             foreach ($errors as $error) {
                 echo $error;
             }
@@ -31,10 +31,9 @@
                 <input type="text" id="description" name="description" placeholder="Masukkan deskripsi produk" maxlength="255" required>
                 <select name="kategori" id="kategori" aria-placeholder="pilih kategori" style="color: grey;">
                     <option value="" disabled selected>pilih kategori</option>
-                    <option value="1">Atasan</option>
-                    <option value="2">Bawahan</option>
-                    <option value="3">Luaran</option>
-                    <option value="4">Aksesoris</option>
+                    <?php foreach($categories as $c) : ?>
+                        <option value="<?= $c['category_id']; ?>"><?= $c['name']; ?></option>
+                    <?php endforeach ?>
                 </select>
                 <input type="file" name="img" id="img" accept="image/*">
                 <button type="submit" class="add-button">Tambah Produk</button>

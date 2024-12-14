@@ -5,8 +5,6 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\CartModel;
-use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Session\Exceptions\SessionException;
 
 class Cart extends BaseController{
 
@@ -70,6 +68,7 @@ class Cart extends BaseController{
                 return redirect()->back();
             }
         }
+        return redirect()->to(base_url('login'));
     }
     public function updcart($id){
         $oldqty = $this->cartbase->select('qty')->where('product_id',$id)->first();
