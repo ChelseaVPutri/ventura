@@ -7,6 +7,35 @@
   <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
   <title><?= $title ?></title>
 </head>
+<style>
+    .category-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .button-card{
+    background-color: #ff6600; 
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 150px;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  .button-card:hover{
+    opacity: 1
+  }
+</style>
 
 <body>
   <div class="header">
@@ -33,6 +62,9 @@
   </div>
 
   <div class="category-container">
+    <a href="<?= base_url('/'); ?>">
+      <button class="button-card">Semua Produk</button>
+    </a>
     <?php foreach($kategori as $k) :?>
       <a href="<?= base_url('/?keyword=' . $k['category_id']); ?>">
         <button class="button-card"><?= $k['name']; ?></button>
