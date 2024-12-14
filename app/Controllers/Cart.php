@@ -49,6 +49,12 @@ class Cart extends BaseController{
     }
 
     public function addcart($id){
+        $user_id = session()->get('user_id');
+
+        if (!$user_id) {
+            return redirect()->to('/login'); // Redirect ke halaman login jika user belum login
+        }
+
         if(!empty(session()->get('user_id'))){
             if(!empty($this->cartbase->where('product_id', $id)->first())){
                 $this->updcart($id);

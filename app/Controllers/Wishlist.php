@@ -17,13 +17,13 @@ class Wishlist extends BaseController {
         $user_id = session()->get('user_id');
 
         if (!$user_id) {
-            session()->setFlashdata('error', 'login dulu kocaG');
+            // session()->setFlashdata('alert', 'Silakan login terlebih dahulu');
             return redirect()->to('/login'); // Redirect ke halaman login jika user belum login
         }
 
         $existWishlist = $this->wishlistmodel->where('user_id', $user_id)->where('product_id', $product_id)->first();
         if($existWishlist) {
-            session()->setFlashdata('Produk ini sudah ada di wishlist');
+            session()->setFlashdata('error', 'Produk ini sudah ada di wishlist');
         } else {
             $data = ['user_id' => $user_id, 'product_id' => $product_id];
             $this->wishlistmodel->insert($data);
