@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 use App\Models\ProductModel;
-use App\Models\WishlistModel;
+use App\Models\CartModel;
 
 class Product extends BaseController {
 
-    public function show(){
-        return $this->productModel->findAll();
+    public function index() {
+        $productModel = new ProductModel();
+        $data['products'] = $productModel->findAll();
+        return view('product_list', $data);
     }
 
     public function detail($id){
@@ -68,9 +70,9 @@ class Product extends BaseController {
 
     public function delproduct($id)
     {
-        // $this->dataproduk->delete($id);
-        // session()->setFlashdata('success', 'Dihapus');
-        // return redirect()->to(base_url('admin/productmanager'));
+        $cartModel = new CartModel();
+        $cartModel->where('product_id', $id)->delete();
+
         if($this->productModel->where('product_id', $id)->delete())
         {
             session()->setFlashdata('success', 'Dihapus');

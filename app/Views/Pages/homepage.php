@@ -19,7 +19,7 @@
       <input type="text" placeholder="Cari di Ventura" class="search-bar" name="keyword" id="keyword">
     </form>
     <div class="icons">
-      <?php if(session()->get('username')): ?>
+      <?php if(session()->get('user_session')): ?>
         <a href="cart"><img src="<?= ASSET.'Keranjang.svg'; ?>" alt="Cart" class="icon"></a>
         <a href="<?= base_url('/wishlist'); ?>"><img src="<?= ASSET.'wishlist.svg'; ?>" alt="Cart" class="icon" style="color: #EA6932;"></a>
         <a href="profile" id="profile-text">Profile</a>
@@ -44,7 +44,7 @@
 
   <div class="product-container" style="display: grid; grid-template-columns: auto auto auto auto;">
     <?php foreach($dataproduk as $p) : ?>
-      <a href="<?= BASEURL . $p['product_id'] ?>">
+      <a href="<?= base_url('product/detail/'.$p['product_id']); ?>">
         <div class="product-card">
           <img src="<?= ASSET . $p['img'] ?>" alt="product-image">
           <p><?= $p['name']; ?></p>

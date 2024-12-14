@@ -46,7 +46,6 @@ $routes->get('/', 'Pages::home');
 $routes->get('/login', 'Pages::login');
 $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
-// $routes->get('/wishlist', 'Pages::wishlist');
 $routes->get('/wishlist', 'Wishlist::index');
 $routes->post('wishlsit/addWishlist/(:num)', 'Wishlist::addWishlist/$product_id');
 $routes->get('wishlsit/delWishlist/(:num)', 'Wishlist::delWishlist/$product_id');

@@ -18,7 +18,7 @@ class AdminPages extends BaseController
 
     public function managepd()
     {
-        if(session()->get('admin') == true)
+        if(session()->get('admin_session'))
         {
             $kategori = new \App\Models\CategoryModel();
 
@@ -29,7 +29,7 @@ class AdminPages extends BaseController
             return view('admin/add_product', $data);
         }
         else{
-            return redirect()->to(base_url());
+            return redirect()->to(base_url('admin/login'));
         }
     }
 
@@ -42,10 +42,10 @@ class AdminPages extends BaseController
 
         if($cek){
             if(($cek['username'] == $username) && ($cek['password'] == $password)) {
-                session()->set([
+                session()->set('admin_session', [
                     'username' => $cek['username'],
-                    'user_id' => $cek['admin_id'],
-                    'admin' => true,
+                    'admin_id' => $cek['admin_id'],
+                    'is_admin' => true
                 ]);
                 return redirect()->to(base_url('admin/productmanager'));
             } else {
@@ -57,5 +57,10 @@ class AdminPages extends BaseController
             session()->setFlashdata('notfound', 'akun belum terdaftar tjoy');
             return redirect()->to(base_url('admin/login'));
         }
+    }
+    
+    public function adminLogout() {
+        session()->remove('admin_session');
+        return redirect()->to(base_url('admin/login'));
     }
 }

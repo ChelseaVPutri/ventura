@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a class="back-button" href="<?= base_url('service/logout') ?>">&#8592;</a>
+        <a class="back-button" href="<?= base_url('AdminPages/adminLogout') ?>" style="text-decoration: none;">&#8592;</a>
         <h2 style="text-align: center;">Tambah Produk</h2>
     </header>
 
@@ -30,7 +30,7 @@
                 <input type="number" id="stock" name="stock" placeholder="Masukkan stock produk" required>
                 <input type="text" id="description" name="description" placeholder="Masukkan deskripsi produk" maxlength="255" required>
                 <select name="kategori" id="kategori" aria-placeholder="pilih kategori" style="color: grey;">
-                    <option value="" disabled selected>pilih kategori</option>
+                    <option value="" disabled selected>Pilih Kategori</option>
                     <?php foreach($categories as $c) : ?>
                         <option value="<?= $c['category_id']; ?>"><?= $c['name']; ?></option>
                     <?php endforeach ?>
