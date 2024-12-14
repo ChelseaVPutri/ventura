@@ -16,10 +16,11 @@ class Service extends BaseController {
         if($cek){
             if($this->request->getPost('captcha') == $this->request->getPost('captcha-random')){
                 if(($cek['username'] == $username) && ($cek['password'] == $password)) {
-                    session()->set('user_session', [
+                    session()->set([ 
                         'email' => $cek['email'],
                         'username' => $cek['username'],
-                        'user_id' => $cek['user_id']
+                        'user_id' => $cek['user_id'],
+                        'is_login' => true
                     ]);
                     return redirect()->to(base_url());
                 } else {

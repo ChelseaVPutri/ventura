@@ -48,7 +48,7 @@
       <input type="text" placeholder="Cari di Ventura" class="search-bar" name="keyword" id="keyword">
     </form>
     <div class="icons">
-      <?php if(session()->get('user_session')): ?>
+      <?php if(session()->get('is_login')): ?>
         <a href="cart"><img src="<?= ASSET.'Keranjang.svg'; ?>" alt="Cart" class="icon"></a>
         <a href="<?= base_url('/wishlist'); ?>"><img src="<?= ASSET.'wishlist.svg'; ?>" alt="Cart" class="icon" style="color: #EA6932;"></a>
         <a href="profile" id="profile-text">Profile</a>

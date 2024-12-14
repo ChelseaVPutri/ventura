@@ -16,7 +16,7 @@ class Wishlist extends BaseController {
     public function addWishlist($product_id) {
         $user_id = session()->get('user_id');
 
-        if (!$user_id) {
+        if (!session()->get('is_login')) {
             // session()->setFlashdata('alert', 'Silakan login terlebih dahulu');
             return redirect()->to('/login'); // Redirect ke halaman login jika user belum login
         }
@@ -40,7 +40,7 @@ class Wishlist extends BaseController {
     }
 
     public function index() {
-        $user_id = session()->get('user_id');
+        $user_id = session()->get('is_login');
         $wishlist_items = $this->wishlistmodel->where('user_id', $user_id)->findColumn('product_id');
         $dataproduk = [];
         if ($wishlist_items) {

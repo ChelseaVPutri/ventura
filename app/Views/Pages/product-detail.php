@@ -33,6 +33,7 @@
                     <?= $product['description']; ?>
                 </p>
                 
+                <?php //if(session()->get('is_login')): ?>
                 <div class="quantity-section">
                     <form action="<?= base_url('cart/addcart/') . $product['product_id']; ?>" method="post">
                         <input class="quantity-input" type="number" value="1" min="1" max="<?= $product['stock']; ?>" name="qty_add">
@@ -42,6 +43,7 @@
                         <button class="cart-button" name="wishlit_cart" style="margin-left: 10px;">Tambahkan ke Wishlist</button>
                     </form>
                 </div>
+                <?php //endif; ?>
 
                 <?php if (session()->getFlashdata('success')) : ?>
                 <div class="alert alert-success" style="color: green">
@@ -58,13 +60,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const alert_message = '<?= session()->getFlashdata('alert') ?>'
-        if(alert_message) {
-            alert(alert_message);
-        }
-    </script>
 
 </body>
 </html>

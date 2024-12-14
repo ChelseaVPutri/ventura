@@ -20,8 +20,8 @@ $session = session()->get('user_session');
 
   <div class="container">
     <div class="profile">
-      <div class="profile-name"><?= esc($session['username'] ?? '') ?></div>
-      <div class="profile-email"><?= esc($session['email'] ?? '') ?></div>
+      <div class="profile-name"><?= session()->get('username') ?></div>
+      <div class="profile-email"><?= session()->get('email') ?></div>
       <a href="<?= base_url('/cart'); ?>" class="button1">Keranjang</a>
       <a href="<?= base_url('/wishlist'); ?>" class="button1">Wishlist</a>
       <a href="#" class="button1">Daftar Pesanan</a>
