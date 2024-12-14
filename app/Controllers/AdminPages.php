@@ -20,8 +20,11 @@ class AdminPages extends BaseController
     {
         if(session()->get('admin') == true)
         {
+            $kategori = new \App\Models\CategoryModel();
+
             $data = [
-                'dataproduk' => $this->productModel->show(),
+                'dataproduk'    => $this->productModel->findAll(),
+                'categories'     => $kategori->findAll()
             ];
             return view('admin/add_product', $data);
         }

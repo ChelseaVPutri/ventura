@@ -6,28 +6,15 @@ use App\Models\WishlistModel;
 
 class Product extends BaseController {
 
-    protected $dataproduk;
-    protected $datawishlist;
-
-    public function __construct()
-    {
-        $this->dataproduk = new ProductModel();
-        $this->datawishlist = new WishlistModel();
-    }
-
     public function show(){
-        return $this->dataproduk->findAll();
+        return $this->productModel->findAll();
     }
 
     public function detail($id){
         // $product = $this->dataproduk->where('product_id', $id)->first();
-        $data['product'] = $this->dataproduk->find($id);
+        $data['product'] = $this->productModel->find($id);
         return view('pages/product-detail', $data);
         // return redirect()->to(base_url('/product/detail/'.$id));
-    }
-
-    public function search($name){
-        return $this->dataproduk->like('name', $name);
     }
 
     public function viewadmin($id){
@@ -44,13 +31,13 @@ class Product extends BaseController {
             'price' => $this->request->getPost('price'),
             'stock' => $this->request->getPost('stock'),
             'description' => $this->request->getPost('description'),
-            'catergory_id' => $this->request->getPost('kategori'),
+            'category_id' => $this->request->getPost('kategori'),
             'img' => $img->getName(),
         ];
     
         // dd($data);
     
-        $this->dataproduk->save($data);
+        $this->productModel->save($data);
         return redirect()->to(base_url('admin/productmanager'));
 
         
@@ -84,7 +71,7 @@ class Product extends BaseController {
         // $this->dataproduk->delete($id);
         // session()->setFlashdata('success', 'Dihapus');
         // return redirect()->to(base_url('admin/productmanager'));
-        if($this->dataproduk->where('product_id', $id)->delete())
+        if($this->productModel->where('product_id', $id)->delete())
         {
             session()->setFlashdata('success', 'Dihapus');
             return redirect()->to(base_url('admin/productmanager'));

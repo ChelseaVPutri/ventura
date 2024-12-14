@@ -6,10 +6,21 @@ use App\Controllers\Product;
 
 class Pages extends BaseController{
     public function home(){
+        $kategori = new \App\Models\CategoryModel();
+        $keyword = $this->request->getGet('keyword');
+
+        if($keyword){
+            $produk = $this->productModel->search($keyword);
+        }else{
+            $produk = $this->productModel->findAll();
+        }
+
+        // dd($keyword);
 
         $data = [
-            'title' => 'Beranda',
-            'dataproduk' => $this->productModel->show()
+            'title'         => 'Beranda',
+            'dataproduk'    => $produk,
+            'kategori'      => $kategori->findAll()
         ];
         return view('Pages/homepage', $data);
     }

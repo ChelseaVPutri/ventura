@@ -60,7 +60,6 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         // $this->UserModel = new \App\Models\UserModel();
         $autoload['libraries'] = array('session');
-        $this->productModel = new \App\Controllers\Product();
-        
+        $this->productModel = new \App\Models\ProductModel();
     }
 }
