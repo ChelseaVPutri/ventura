@@ -28,12 +28,12 @@ class Service extends BaseController {
                 }
             }
             else{
-                session()->setFlashdata('eror', 'Captcha salah tjoy');
+                session()->setFlashdata('eror', 'Captcha salah');
                 return redirect()->to(base_url('login'));
             }
         }
         else{
-            session()->setFlashdata('notfound', 'akun belum terdaftar tjoy');
+            session()->setFlashdata('notfound', 'Akun belum terdaftar');
             return redirect()->to(base_url('login'));
         }
 

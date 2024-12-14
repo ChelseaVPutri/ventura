@@ -23,11 +23,11 @@
             <h2>Register</h2>
             <p>Sudah punya akun? <a href="login" id="sign-link">Login</a></p>
 
-            <?php
-                if(session()->getFlashdata('eror')) {
-                    echo session()->getFlashdata('eror');
-                }; 
-            ?>
+            <?php if (session()->getFlashdata('eror')) : ?>
+                <div class="alert alert-danger" style="color: red">
+                    <?= session()->getFlashdata('eror'); ?>
+                </div>
+            <?php endif; ?>
 
             <form action="<?= base_url('/service/save') ?>" method="post">
                 <div class="inputField">
@@ -53,7 +53,7 @@
                     <hr class="line">
                     <p id="atau">ATAU</p>
                     <hr class="line">
-                </div> -->
+                </div>  -->
                 
                 <!-- <div class="inputField" id="google-logo" style="justify-content: center; align-items: center;">
                     <a href="<//?= base_url('auth/loginGoogle'); ?>">

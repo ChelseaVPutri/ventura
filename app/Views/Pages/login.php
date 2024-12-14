@@ -23,15 +23,25 @@
             <h2>Login</h2>
             <p>Belum punya akun? <a href="register" id="sign-link">Register</a></p>
             <form method="post" action="<?= base_url('service/loginAction'); ?>">
-                <?php
-                    if(session()->getFlashdata('gagal'))
-                    {
-                        echo session()->getFlashdata('gagal');
-                    }
-                    elseif(session()->getFlashdata('notfound')){
-                        echo session()->getFlashdata('notfound');        
-                    }
-                ?>
+
+            <?php if (session()->getFlashdata('gagal')) : ?>
+                <div class="alert alert-success" style="color: red; margin-bottom: 10px">
+                    <?= session()->getFlashdata('gagal'); ?>
+                </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('notfound')) : ?>
+                <div class="alert alert-danger" style="color: red">
+                    <?= session()->getFlashdata('notfound'); ?>
+                </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('eror')) : ?>
+                <div class="alert alert-danger" style="color: red">
+                    <?= session()->getFlashdata('eror'); ?>
+                </div>
+                <?php endif; ?>
+                
                 <div class="inputField">
                     <input type="text" id="username" name="username" placeholder="Username" value="<?= old('username'); ?>" required autofocus>
                 </div>

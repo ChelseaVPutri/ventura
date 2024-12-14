@@ -19,7 +19,7 @@ class Cart extends BaseController{
     
     public function index(){
 
-        if(session()->get('user_id') == ''){
+        if(session()->get('user_session') == ''){
             session()->setFlashdata('eror','login dlu bego');
             return redirect()->to(base_url('login'));
         }else{
@@ -43,7 +43,7 @@ class Cart extends BaseController{
             $data = [
                 'title' => 'Keranjangmu',
             ];
-            session()->setFlashdata('kosonk', 'Keranjang lu kosong bjirt');
+            session()->setFlashdata('kosonk', 'Keranjang kosong');
         }
         return view('pages/cart',$data);
     }

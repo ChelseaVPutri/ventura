@@ -1,13 +1,5 @@
 <?php
-// include "../service/connection.php";
-// session_start();
-// if($_SESSION['is_login']){
-//   $usernama = $_SESSION['username'];
-//   $email = $_SESSION['email'];
-// }
-// else{
-//   header("Location: /uts/login-register/login.php");
-// }
+$session = session()->get('user_session');
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +20,8 @@
 
   <div class="container">
     <div class="profile">
-      <div class="profile-name"><?= session()->get('username') ?></div>
-      <div class="profile-email"><?= session()->get('email')?></div>
+      <div class="profile-name"><?= esc($session['username'] ?? '') ?></div>
+      <div class="profile-email"><?= esc($session['email'] ?? '') ?></div>
       <a href="<?= base_url('/cart'); ?>" class="button1">Keranjang</a>
       <a href="<?= base_url('/wishlist'); ?>" class="button1">Wishlist</a>
       <a href="#" class="button1">Daftar Pesanan</a>
