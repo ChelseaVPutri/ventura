@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      margin: 20px 0;
+      margin-top: 0;
     }
 
     .button-card{
@@ -54,8 +54,8 @@
         <a href="profile" id="profile-text">Profile</a>
       <?php else : ?>
         <nav>
-          <a href="login">Login</a>
-          <a href="register">Register</a>
+          <a href="login" style="color: #EA6932; font-weight:bold; margin-right: 10px;">Login</a>
+          <a href="register" style="color: #EA6932; font-weight:bold; margin-right: 10px;">Register</a>
         </nav>
       <?php endif; ?>
     </div>
