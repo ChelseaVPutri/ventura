@@ -100,6 +100,31 @@ class Cart extends BaseController{
         }
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
+
+    public function delcart($product_id) {
+        //MASIH ERROR ARGH
+        //ErrorException
+        //Trying to access array offset on value of type null
+        if(!session()->get('is_login')) {
+            session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
+            return redirect()->to('/login');
+        }
+
+        $user_id = session()->get('user_id');
+        $this->cartbase->where('user_id', $user_id)->where('product_id', $product_id)->delete();
+        return redirect()->back();
+    }
+
+    public function clearcart() {
+        if(!session()->get('is_login')) {
+            session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
+            return redirect()->to('/login');
+        }
+
+        $user_id = session()->get('user_id');
+        $this->cartbase->where('user_id', $user_id)->delete();
+        return redirect()->back();
+    }
     // public function updcart($id){
     //     $oldqty = $this->cartbase->select('qty')->where('product_id',$id)->first();
     //     $updqty = $this->request->getPost('qty_add');
