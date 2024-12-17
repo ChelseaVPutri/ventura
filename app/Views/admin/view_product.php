@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <a href="<?= base_url('admin/dashboard'); ?>">
+        <a href="<?= base_url('admin/product-list'); ?>">
             <button class="back-button">&#8592;</button></a>
         <h2 style="text-align: center;">Detail Produk</h2>
     </header>
