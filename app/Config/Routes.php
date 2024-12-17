@@ -48,11 +48,11 @@ $routes->get('/register', 'Pages::register');
 $routes->get('/profile', 'Pages::profile');
 $routes->get('/wishlist', 'Wishlist::index');
 $routes->post('wishlsit/addWishlist/(:num)', 'Wishlist::addWishlist/$product_id');
-$routes->get('wishlsit/delWishlist/(:num)', 'Wishlist::delWishlist/$product_id'); //error cuki
+$routes->get('wishlsit/delWishlist/(:num)', 'Wishlist::delWishlist/$product_id');
 $routes->get('/callback', 'Auth::callback');
 $routes->get('product/(:segment)', 'Product::detail/$id');
 $routes->get('/cart', 'Cart::index');
-$routes->get('/cart/delcart/(:num)', 'Cart::delcart/$product_id');
+$routes->get('cart/delcart/(:num)', 'Cart::delcart/$product_id');
 $routes->get('/cart/clear', 'Cart::clearcart');
 $routes->get('/admin/login', 'AdminPages::index');
 $routes->get('/admin/productmanager', 'AdminPages::managepd');

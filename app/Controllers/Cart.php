@@ -27,9 +27,17 @@ class Cart extends BaseController{
         }
 
         // dd($usercart);
-
+        $products = [];
+        $total_price = 0;
         foreach($usercart as $prod){
-            $products[] = $this->prodbase->where('product_id', $prod['product_id'])->first();
+            $product = $this->prodbase->where('product_id', $prod['product_id'])->first();
+            if($product) {
+                $product['qty'] = $prod['qty'];
+                $total_price += $product['price'] * $prod['qty'];
+                $products[] = $product;
+            } else {
+                $total_price = 0;
+            }
         }
 
         // dd($products);
@@ -38,6 +46,7 @@ class Cart extends BaseController{
                 'title' => 'Keranjangmu',
                 'dataprod' => $products,
                 'usercart' => $usercart,
+                'total_price' => $total_price
             ];
         }else{
             $data = [
@@ -102,9 +111,6 @@ class Cart extends BaseController{
     }
 
     public function delcart($product_id) {
-        //MASIH ERROR ARGH
-        //ErrorException
-        //Trying to access array offset on value of type null
         if(!session()->get('is_login')) {
             session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
             return redirect()->to('/login');

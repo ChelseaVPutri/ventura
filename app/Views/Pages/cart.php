@@ -99,7 +99,9 @@
                         <div class="item-price">
                             <p>Rp<?= number_format($cd['price'], 0, ',', '.'); ?> x <?= $usercart[$count]['qty'] ?> =</p>
                             <p class="total-price">Rp<?php $total = $cd['price'] * $usercart[$count]['qty'];echo number_format($total, 0, ',', '.'); ?></p>
-                            <a class="remove-button" href="<?// base_url('/cart/delcart/' . $cd['product_id']) ?>">Hapus</a>
+                            <form action="<?= base_url('cart/delcart/'.$cd['product_id']); ?>" method="post">
+                                <button type="submit" class="remove-button">Hapus</button>
+                            </form>
                         </div>
                     </div>
             <?php
@@ -112,8 +114,8 @@
     <div class="cart-summary">
             <div class="shop-details">
                 <p>Total Harga:</p>
-                <!-- <p class="total-cart-price">Rp<//?= number_format($totalCart, 0, ',', '.'); ?></p> -->
-                 <p class="total-cart-price">Rp 50.000</p>
+                <p class="total-cart-price">Rp<?= isset($total_price) ? number_format($total_price, 0, ',', '.') : 0; ?></p>
+                 <!-- <p class="total-cart-price">Rp 50.000</p> -->
             </div>
             <div class="summary-buttons">
                 <a href="<?= base_url('/cart/clear') ?>" class="clear-cart">Hapus Semua</a>
