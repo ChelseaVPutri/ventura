@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AdminModel;
+use App\Models\ProductModel;
 
 class AdminPages extends BaseController
 {
@@ -14,6 +15,12 @@ class AdminPages extends BaseController
 
         ];
         return view('admin/admin_login', $data);
+    }
+
+    public function dashboard() {
+        $productModel = new ProductModel();
+        $data['total_products'] = $this->productModel->countAll();
+        return view('admin/dashboard', $data);
     }
 
     public function managepd()

@@ -20,7 +20,9 @@ class Product extends BaseController {
     }
 
     public function viewadmin($id){
-        
+        $product = $this->productModel->find($id);
+        $data = ['title' => 'Detail Produk', 'product'  => $product];
+        return view('admin/view_product', $data);
     }
 
     public function addproduct(){
@@ -40,6 +42,7 @@ class Product extends BaseController {
         // dd($data);
     
         $this->productModel->save($data);
+        session()->setFlashdata('success', 'Produk berhasil ditambahkan');
         return redirect()->to(base_url('admin/productmanager'));
 
         
@@ -58,6 +61,13 @@ class Product extends BaseController {
         // }else{
 
         // }
+    }
+
+    public function productlist() {
+        $productModel = new ProductModel();
+        $data['title'] = 'Daftar Produk';
+        $data['dataproduk'] = $this->productModel->findAll();
+        return view('admin/product_list', $data);
     }
 
     protected function updproduct($id)

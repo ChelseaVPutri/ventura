@@ -49,13 +49,13 @@
     </header>
 
     <div class="button-container">
-        <a href="#">
+        <a href="<?= base_url('admin/dashboard'); ?>">
             <button class="button-card">Dashboard</button>
         </a>
-        <a href="#">
+        <a href="<?= base_url('admin/product-list'); ?>">
             <button class="button-card">Daftar Produk</button>
         </a>
-        <a href="#">
+        <a href="<?= base_url('admin/productmanager') ?>">
             <button class="button-card">Tambah Produk</button>
         </a>
         <a href="#">
@@ -87,23 +87,14 @@
                 </select>
                 <input type="file" name="img" id="img" accept="image/*">
                 <button type="submit" class="add-button">Tambah Produk</button>
-            </form>
-        </section>
-        
-        <section class="product-list">
-            <?php foreach($dataproduk as $p) : ?>
-            <div class="product-card">
-                <img src="<?= ASSET. $p['img']; ?>" alt="Product Image">
-                <div class="product-info">
-                    <p><?= $p['name']; ?></p>
-                    <p class="price" style="color: #EA6932;">Rp<?= number_format($p['price'], 0, ',', '.'); ?></p>
-                    <div class="product-actions">
-                        <a href="../Product/delproduct/<?= $p['product_id']; ?>"><button class="delete-button">Hapus</button></a>
-                        <a href="../Product/viewadmin/<?= $p['product_id']; ?>"><button class="view-button">Lihat</button></a>
-                    </div>
+
+                <?php if (session()->getFlashdata('success')) : ?>
+                <div class="alert alert-success" style="color: green">
+                    <?= session()->getFlashdata('success'); ?>
                 </div>
-            </div>
-            <?php endforeach ?>
+                <?php endif; ?>
+
+            </form>
         </section>
     </div>
 </body>
