@@ -55,4 +55,7 @@ $routes->get('/cart', 'Cart::index');
 $routes->get('cart/delcart/(:num)', 'Cart::delcart/$product_id');
 $routes->get('/cart/clear', 'Cart::clearcart');
 $routes->get('/admin/login', 'AdminPages::index');
+$routes->get('/admin/dashboard', 'AdminPages::dashboard');
 $routes->get('/admin/productmanager', 'AdminPages::managepd');
+$routes->get('admin/product-list', 'Product::productlist');
+$routes->get('admin/product/detail/(:num)', 'Product::viewadmin/$1');
