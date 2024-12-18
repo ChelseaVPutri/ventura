@@ -119,7 +119,7 @@
             </div>
             <div class="summary-buttons">
                 <a href="<?= base_url('/cart/clear') ?>" class="clear-cart">Hapus Semua</a>
-                <a href="" class="checkout">Checkout</a>
+                <a href="<?= base_url('/cart/checkout'); ?>" class="checkout">Checkout</a>
             </div>
     </div>
 </div>

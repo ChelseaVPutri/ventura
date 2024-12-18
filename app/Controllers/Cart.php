@@ -22,9 +22,10 @@ class Cart extends BaseController{
         if(!session()->get('is_login')){
             session()->setFlashdata('eror','Silakan login terlebih dahulu');
             return redirect()->to(base_url('login'));
-        }else{
-            $usercart = $this->cartbase->where('user_id', session()->get('user_id'))->findAll();
         }
+
+        // get user cart
+        $usercart = $this->cartbase->where('user_id', session()->get('user_id'))->findAll();
 
         // dd($usercart);
         $products = [];
@@ -80,10 +81,10 @@ class Cart extends BaseController{
         // return redirect()->to(base_url('login'));
 
 
-        $user_id = session()->get('user_id');
         if(!session()->get('is_login')) {
             return redirect()->to('/login')->with('error', 'Login terlebih dahulu');
         }
+        $user_id = session()->get('user_id');
 
         $product = $this->prodbase->find($product_id);
         $stock = $product['stock'];
@@ -144,4 +145,27 @@ class Cart extends BaseController{
     //     $this->cartbase->where('product_id', $id)->set(['qty' => $newqty])->update();
     //     return;
     // }
+    public function checkout(){
+        if(!session()->get('is_login')) {
+            session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
+            return redirect()->to('/login');
+        }
+
+        $usercart = $this->cartbase->where('user_id', session()->get('user_id'))->findAll();
+
+        $products = [];
+        foreach($usercart as $prod){
+            $product = $this->prodbase->where('product_id', $prod['product_id'])->first();
+            $products[] = $product;
+        }
+
+        $data = [
+            'title' => 'Keranjangmu',
+            'dataprod' => $products,
+            'usercart' => $usercart,
+        ];
+
+
+        return view('pages/checkout', $data);
+    }
 }
