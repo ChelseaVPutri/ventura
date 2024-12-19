@@ -34,12 +34,12 @@
                     <div class="product-info">
                         <p><?= $product['name']; ?></p>
                         <form>
-                            <select name="ongkir" id="ongkir" aria-placeholder="pilih pengiriman" style="color: grey;" onchange="changeong();">
-                                <option value="" disabled selected>pilih pengiriman</option>
-                                <option value=12000>ekspedisi</option>
-                                <option value=15000>kargo</option>
-                                <option value=35000>next day</option>
-                                <option value=50000>Gosend</option>
+                            <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();">
+                                <option value="" disabled selected>Pilih Pengiriman</option>
+                                <option value=12000>Normal</option>
+                                <option value=15000>Kargo</option>
+                                <option value=35000>Next day</option>
+                                <option value=50000>Same day</option>
                             </select>
                         </form>
                     </div>
@@ -82,8 +82,10 @@
     var ongkir = 0;
     function changeong(){
         let selectbox = document.getElementById('ongkir');
-        let selected = selectbox.options[selectbox.selectedIndex].value;
-        ongkir += parseInt(selected);
+        // let selected = selectbox.options[selectbox.selectedIndex].value;
+        let selected = parseInt(selectbox.options[selectbox.selectedIndex].value);
+        // ongkir += parseInt(selected);
+        ongkir = selected;
         // console.log(ongkir);
         document.getElementById('hargaOngkir').innerHTML = Intl.NumberFormat('id-ID', {style:'currency', currency: 'IDR'}).format(ongkir);
     }
