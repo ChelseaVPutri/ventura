@@ -33,17 +33,8 @@
                     <img src="<?= ASSET . $product['img']; ?>" alt="<?= $product['name']; ?>" class="product-image">
                     <div class="product-info">
                         <p><?= $product['name']; ?></p>
-                        <form>
-                            <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();">
-                                <option value="" disabled selected>Pilih Pengiriman</option>
-                                <option value=12000>Normal</option>
-                                <option value=15000>Kargo</option>
-                                <option value=35000>Next day</option>
-                                <option value=50000>Same day</option>
-                            </select>
-                        </form>
+                        <p style="font-weight: bold;"><?= $usercart[$count]['qty'] . ' x Rp' . number_format($product['price'], 0, ',', '.') ?></p>
                     </div>
-                    <p style="font-weight: bold;"><?= $usercart[$count]['qty'] . ' x Rp' . number_format($product['price'], 0, ',', '.') ?></p>
                 </div>
                 <?php 
                 $total += $usercart[$count]['qty'] * $product['price'];
@@ -52,25 +43,37 @@
             </section>
             <section class="right-section order-summary">
                 <h2>Belanjaanmu</h2>
+                <form>
+                    <div class="order-detail" style="margin-bottom: 15px">
+                        <label for="ongkir">Metode Pengiriman</label>
+                        <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();">
+                            <option value="" disabled selected>Pilih Pengiriman</option>
+                            <option value="12000">Normal - Rp12.000</option>
+                            <option value="15000">Kargo - Rp15.000</option>
+                            <option value="35000">Next Day - Rp35.000</option>
+                            <option value="50000">Same Day - Rp50.000</option>
+                        </select>
+                    </div>
+                </form>
                 <div class="order-detail">
-                    <span>Total harga (<?= $count++; ?> barang)</span>
-                    <span>Rp<?=number_format($total, 0, ',', '.'); ?></span>
+                    <span>Total Harga (<?= $count; ?> barang)</span>
+                    <span>Rp<?= number_format($total, 0, ',', '.'); ?></span>
                 </div>
                 <div class="order-detail">
                     <span>Total Asuransi Pengiriman</span>
-                    <span>-</span>
+                    <span>Rp<?= number_format(1000, 0, ',', '.'); ?></span>
                 </div>
                 <div class="order-detail">
                     <span>Total Biaya Proteksi</span>
-                    <span>-</span>
+                    <span>Rp<?= number_format(2000, 0, ',', '.'); ?></span>
                 </div>
                 <div class="order-detail">
                     <span>Ongkos Kirim</span>
                     <span id="hargaOngkir">-</span>
                 </div>
-                <div class="total">
+                <div class="total" style="margin-top: 15px">
                     <span>Total Belanja</span>
-                    <span>Rp259.900</span>
+                    <span id="totalBelanja">Rp<?= number_format($total, 0, ',', '.'); ?></span>
                 </div>
                 <button class="payment-button">Pilih Pembayaran</button>
             </section>
@@ -79,14 +82,19 @@
 </body>
 </html>
 <script>
+    var total = <?= $total ?>;
     var ongkir = 0;
-    function changeong(){
+    var asuransi = 1000;
+    var proteksi = 2000;
+
+    function changeong() {
         let selectbox = document.getElementById('ongkir');
-        // let selected = selectbox.options[selectbox.selectedIndex].value;
-        let selected = parseInt(selectbox.options[selectbox.selectedIndex].value);
-        // ongkir += parseInt(selected);
+        let selected = parseInt(selectbox.options[selectbox.selectedIndex].value); // Ambil nilai ongkos kirim baru
+        
         ongkir = selected;
-        // console.log(ongkir);
-        document.getElementById('hargaOngkir').innerHTML = Intl.NumberFormat('id-ID', {style:'currency', currency: 'IDR'}).format(ongkir);
+        let totalBelanja = total + ongkir + asuransi + proteksi;
+
+        document.getElementById('hargaOngkir').innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(ongkir);
+        document.getElementById('totalBelanja').innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalBelanja);
     }
 </script>
