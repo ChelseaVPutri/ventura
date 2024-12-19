@@ -12,15 +12,17 @@ class AdminPages extends BaseController
     {
         $data = [
             'title' => 'loginkan min',
-
         ];
         return view('admin/admin_login', $data);
     }
 
     public function dashboard() {
-        $productModel = new ProductModel();
-        $data['total_products'] = $this->productModel->countAll();
-        return view('admin/dashboard', $data);
+        // $data['total_products'] = $this->productModel->countAll();
+        $data = [
+            'total_product' => $this->productModel->countAll(),
+            'user'          => session()->get('admin_session')
+        ];
+        return view('admin/admin_dashboard', $data);
     }
 
     public function managepd()
@@ -54,7 +56,7 @@ class AdminPages extends BaseController
                     'admin_id' => $cek['admin_id'],
                     'is_admin' => true
                 ]);
-                return redirect()->to(base_url('admin/productmanager'));
+                return redirect()->to(base_url('admin/product-manager'));
             } else {
                 session()->setFlashdata('gagal', 'Username/Password salah');
                 return redirect()->to(base_url('admin/login'));

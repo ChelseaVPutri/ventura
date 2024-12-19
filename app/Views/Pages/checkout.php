@@ -36,10 +36,10 @@
                         <form>
                             <select name="ongkir" id="ongkir" aria-placeholder="pilih pengiriman" style="color: grey;" onchange="changeong();">
                                 <option value="" disabled selected>pilih pengiriman</option>
-                                <option value="Rp12.000">ekspedisi</option>
-                                <option value="Rp15.000">kargo</option>
-                                <option value="Rp35.000">next day</option>
-                                <option value="Rp50.000">Gosend</option>
+                                <option value=12000>ekspedisi</option>
+                                <option value=15000>kargo</option>
+                                <option value=35000>next day</option>
+                                <option value=50000>Gosend</option>
                             </select>
                         </form>
                     </div>
@@ -79,9 +79,12 @@
 </body>
 </html>
 <script>
+    var ongkir = 0;
     function changeong(){
-        var selectbox = document.getElementById('ongkir');
-        var selected = selectbox.options[selectbox.selectedIndex].value;
-        document.getElementById('hargaOngkir').innerHTML = selected;
+        let selectbox = document.getElementById('ongkir');
+        let selected = selectbox.options[selectbox.selectedIndex].value;
+        ongkir += parseInt(selected);
+        // console.log(ongkir);
+        document.getElementById('hargaOngkir').innerHTML = Intl.NumberFormat('id-ID', {style:'currency', currency: 'IDR'}).format(ongkir);
     }
 </script>
