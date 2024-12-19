@@ -29,12 +29,22 @@
                 $count = 0;
                 $total = 0;
                 foreach($dataprod as $product): ?>
-                    <div class="product-details">
-                        <img src="<?= ASSET . $product['img']; ?>" alt="<?= $product['name']; ?>" class="product-image">
+                <div class="product-details">
+                    <img src="<?= ASSET . $product['img']; ?>" alt="<?= $product['name']; ?>" class="product-image">
+                    <div class="product-info">
                         <p><?= $product['name']; ?></p>
-                        <p><?= $usercart[$count]['qty'] . ' x Rp' . number_format($product['price'], 0, ',', '.') ?></p>
-                        <button class="shipping-button">Pilih Pengiriman</button>
+                        <form>
+                            <select name="ongkir" id="ongkir" aria-placeholder="pilih pengiriman" style="color: grey;" onchange="changeong();">
+                                <option value="" disabled selected>pilih pengiriman</option>
+                                <option value="Rp12.000">ekspedisi</option>
+                                <option value="Rp15.000">kargo</option>
+                                <option value="Rp35.000">next day</option>
+                                <option value="Rp50.000">Gosend</option>
+                            </select>
+                        </form>
                     </div>
+                    <p style="font-weight: bold;"><?= $usercart[$count]['qty'] . ' x Rp' . number_format($product['price'], 0, ',', '.') ?></p>
+                </div>
                 <?php 
                 $total += $usercart[$count]['qty'] * $product['price'];
                 $count++; 
@@ -54,6 +64,10 @@
                     <span>Total Biaya Proteksi</span>
                     <span>-</span>
                 </div>
+                <div class="order-detail">
+                    <span>Ongkos Kirim</span>
+                    <span id="hargaOngkir">-</span>
+                </div>
                 <div class="total">
                     <span>Total Belanja</span>
                     <span>Rp259.900</span>
@@ -64,3 +78,10 @@
     </div>
 </body>
 </html>
+<script>
+    function changeong(){
+        var selectbox = document.getElementById('ongkir');
+        var selected = selectbox.options[selectbox.selectedIndex].value;
+        document.getElementById('hargaOngkir').innerHTML = selected;
+    }
+</script>

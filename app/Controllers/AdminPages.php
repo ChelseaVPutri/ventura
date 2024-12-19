@@ -11,7 +11,7 @@ class AdminPages extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Dashboard',
+            'title' => 'loginkan min',
 
         ];
         return view('admin/admin_login', $data);
