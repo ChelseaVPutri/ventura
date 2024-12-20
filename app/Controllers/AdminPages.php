@@ -39,7 +39,7 @@ class AdminPages extends BaseController
             $kategori = new \App\Models\CategoryModel();
 
             $data = [
-                'title'         => 'Tambah Product',
+                'title'         => 'Tambah Produk',
                 'css'           => 'add-product',
                 'dataproduk'    => $this->productModel->findAll(),
                 'categories'    => $kategori->findAll(),

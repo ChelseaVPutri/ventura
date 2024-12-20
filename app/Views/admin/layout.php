@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <h1>Dashboard</h1>
+        <h1><?= $title; ?></h1>
     </header>
     <div class="container">
         <aside class="sidebar">
@@ -17,14 +17,6 @@
                 <p class="user-name"><?= $user['username']; ?></p>
                 <p class="user-email"><?= $user['admin_id']; ?></p>
             </div>
-            <nav class="menu">
-                <a href="dashboard" class="menu-item active">Dashboard</a>
-                <a href="productmanager" class="menu-item">Tambah Produk</a>
-                <a href="product-list" class="menu-item">Daftar Produk</a>
-                <a href="#" class="menu-item">Daftar Pesanan</a>
-                <a href="#" class="menu-item">Pengaturan</a>
-            </nav>
-        </aside>
             <?= $this->renderSection('content') ?>
         <aside class="highlights">
             <h2>Highlight</h2>

@@ -1,6 +1,14 @@
 <?= $this->extend('admin/layout'); ?>
 
 <?= $this->section('content'); ?>
+                <nav class="menu">
+                <a href="dashboard" class="menu-item">Dashboard</a>
+                <a href="productmanager" class="menu-item active">Tambah Produk</a>
+                <a href="product-list" class="menu-item">Daftar Produk</a>
+                <a href="#" class="menu-item">Daftar Pesanan</a>
+                <a href="#" class="menu-item">Pengaturan</a>
+            </nav>
+        </aside>
         <main class="main-content">
             <section class="add-product">
                 <form action="<?= base_url('product/addproduct'); ?>" method="post" enctype="multipart/form-data">
