@@ -83,7 +83,7 @@ class AdminPages extends BaseController
                     'admin_id' => $cek['admin_id'],
                     'is_admin' => true
                 ]);
-                return redirect()->to(base_url('admin/product-manager'));
+                return redirect()->to(base_url('admin/productmanager'));
             } else {
                 session()->setFlashdata('gagal', 'Username/Password salah');
                 return redirect()->to('admin/login');
