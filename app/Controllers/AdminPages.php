@@ -17,12 +17,19 @@ class AdminPages extends BaseController
     }
 
     public function dashboard() {
+        if(session()->get('admin_session')){
+            $data = [
+                'title'         => 'Dashboard Atmin',
+                'css'           => 'admin_dashboard',
+                'total_product' => $this->productModel->countAll(),
+                'user'          => session()->get('admin_session')
+            ];
+            return view('admin/admin_dashboard', $data);
+        }
+        else{
+            return redirect()->to('admin/login');
+        }
         // $data['total_products'] = $this->productModel->countAll();
-        $data = [
-            'total_product' => $this->productModel->countAll(),
-            'user'          => session()->get('admin_session')
-        ];
-        return view('admin/admin_dashboard', $data);
     }
 
     public function managepd()
@@ -32,13 +39,33 @@ class AdminPages extends BaseController
             $kategori = new \App\Models\CategoryModel();
 
             $data = [
+                'title'         => 'Tambah Product',
+                'css'           => 'add-product',
                 'dataproduk'    => $this->productModel->findAll(),
-                'categories'     => $kategori->findAll()
+                'categories'    => $kategori->findAll(),
+                'user'          => session()->get('admin_session')
             ];
             return view('admin/add_product', $data);
         }
         else{
-            return redirect()->to(base_url('admin/login'));
+            session()->setFlashdata('null', 'anda belum login');
+            return redirect()->to('admin/login');
+        }
+    }
+ 
+    public function productlist() {
+        $productModel = new ProductModel();
+        if(session()->get('admin_session')){
+            $data = [
+                'title'         => 'Daftar Produk',
+                'css'           => 'product-list',
+                'dataproduk'    => $this->productModel->findAll(),
+                'user'          => session()->get('admin_session'),
+            ];
+            return view('admin/product_list', $data);
+        }else{
+            session()->setFlashdata('null', 'anda belum login');
+            return redirect()->to('admin/login');
         }
     }
 
@@ -59,7 +86,7 @@ class AdminPages extends BaseController
                 return redirect()->to(base_url('admin/product-manager'));
             } else {
                 session()->setFlashdata('gagal', 'Username/Password salah');
-                return redirect()->to(base_url('admin/login'));
+                return redirect()->to('admin/login');
             }
         }
         else{
@@ -71,5 +98,13 @@ class AdminPages extends BaseController
     public function adminLogout() {
         session()->remove('admin_session');
         return redirect()->to(base_url('admin/login'));
+    }
+
+    public function editproduct($id){
+        if(session()->get('admin_session')){
+            $this->productModel->find($id);
+        }else{
+            return redirect()->to('admin/login');
+        }
     }
 }

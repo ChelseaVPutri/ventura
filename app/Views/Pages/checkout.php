@@ -43,7 +43,7 @@
             </section>
             <section class="right-section order-summary">
                 <h2>Belanjaanmu</h2>
-                <form>
+                <form action="product/checkout" id="checkout" method="post">
                     <div class="order-detail" style="margin-bottom: 15px">
                         <label for="ongkir">Metode Pengiriman</label>
                         <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();">
@@ -75,7 +75,7 @@
                     <span>Total Belanja</span>
                     <span id="totalBelanja">Rp<?= number_format($total, 0, ',', '.'); ?></span>
                 </div>
-                <button class="payment-button">Pilih Pembayaran</button>
+                <button type="submit" for="checkout" class="payment-button">Pilih Pembayaran</button>
             </section>
         </main>
     </div>

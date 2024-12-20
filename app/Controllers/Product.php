@@ -63,13 +63,6 @@ class Product extends BaseController {
         // }
     }
 
-    public function productlist() {
-        $productModel = new ProductModel();
-        $data['title'] = 'Daftar Produk';
-        $data['dataproduk'] = $this->productModel->findAll();
-        return view('admin/product_list', $data);
-    }
-
     protected function updproduct($id)
     {
         $set = [
@@ -86,7 +79,7 @@ class Product extends BaseController {
         if($this->productModel->where('product_id', $id)->delete())
         {
             session()->setFlashdata('success', 'Dihapus');
-            return redirect()->to(base_url('admin/productmanager'));
+            return redirect()->to('admin/productmanager');
         }
         else
         {

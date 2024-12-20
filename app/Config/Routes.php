@@ -51,11 +51,13 @@ $routes->post('wishlsit/addWishlist/(:num)', 'Wishlist::addWishlist/$product_id'
 $routes->get('wishlsit/delWishlist/(:num)', 'Wishlist::delWishlist/$product_id');
 $routes->get('/callback', 'Auth::callback');
 $routes->get('product/(:segment)', 'Product::detail/$id');
+
 $routes->get('/cart', 'Cart::index');
 $routes->get('cart/delcart/(:num)', 'Cart::delcart/$product_id');
 $routes->get('/cart/clear', 'Cart::clearcart');
+
 $routes->get('/admin/login', 'AdminPages::index');
 $routes->get('/admin/dashboard', 'AdminPages::dashboard');
-$routes->get('/admin/product-manager', 'AdminPages::managepd');
-$routes->get('admin/product-list', 'Product::productlist');
+$routes->get('/admin/productmanager', 'AdminPages::managepd');
+$routes->get('admin/product-list', 'AdminPages::productlist');
 $routes->get('admin/product/detail/(:num)', 'Product::viewadmin/$1');
