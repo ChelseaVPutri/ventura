@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Models\CartModel;
 
@@ -87,5 +88,16 @@ class Product extends BaseController {
             session()->setFlashdata('error', 'Gagal menghapus produk');
             return redirect()->to(base_url('admin/product-list'));
         }
+    }
+
+    public function editproduct($id){
+        $categoryModel = new CategoryModel();
+        $product = $this->productModel->find($id);
+        $data = [
+            'title' => 'Edit Produk',
+            'product' => $product,
+            'categories' => $categoryModel->findAll()
+        ];
+        return view('admin/edit_product', $data);
     }
 }
