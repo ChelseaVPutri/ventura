@@ -26,7 +26,7 @@ class Product extends BaseController {
     }
 
     public function addproduct(){
-        $img = $this->request->getFile('img');
+        $img = $this->request->getFile('imgInp');
 
         $img->move('assets');
     
@@ -43,7 +43,7 @@ class Product extends BaseController {
     
         $this->productModel->save($data);
         session()->setFlashdata('success', 'Produk berhasil ditambahkan');
-        return redirect()->to(base_url('admin/productmanager'));
+        return redirect()->back();
 
         
         // if(!$this->validate(
@@ -75,16 +75,17 @@ class Product extends BaseController {
     {
         $cartModel = new CartModel();
         $cartModel->where('product_id', $id)->delete();
+        $img = $this->productModel->select('img')->where('product_id', $id)->first();
 
-        if($this->productModel->where('product_id', $id)->delete())
+        if($this->productModel->where('product_id', $id)->delete() and unlink('assets/' . $img['img']))
         {
             session()->setFlashdata('success', 'Dihapus');
-            return redirect()->to('admin/productmanager');
+            return redirect()->back();
         }
         else
         {
             session()->setFlashdata('error', 'Gagal menghapus produk');
-            return redirect()->to('admin/productmanager');
+            return redirect()->back();
         }
     }
 }

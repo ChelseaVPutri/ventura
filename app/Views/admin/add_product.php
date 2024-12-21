@@ -11,6 +11,11 @@
         </aside>
         <main class="main-content">
             <section class="add-product">
+                 <?php if (session()->getFlashdata('success')) : ?>
+                    <div class="alert alert-success" style="color: green">
+                        <?= session()->getFlashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
                 <form action="<?= base_url('product/addproduct'); ?>" method="post" enctype="multipart/form-data">
                 <?php csrf_field() ?>
                     <input type="text" id="name" name="name" placeholder="Masukkan nama produk" required>
@@ -23,14 +28,19 @@
                             <option value="<?= $c['category_id']; ?>"><?= $c['name']; ?></option>
                         <?php endforeach ?>
                     </select>
-                    <input type="file" name="img" id="img" accept="image/*">
-                    <button type="submit" class="add-button">Tambah Produk</button>
-
-                    <?php if (session()->getFlashdata('success')) : ?>
-                    <div class="alert alert-success" style="color: green">
-                        <?= session()->getFlashdata('success'); ?>
+                    <input type="file" name="imgInp" id="imgInp" accept="image/*">
+                    <div class="image-preview" id="image-preview">
+                        <img id="blah">
                     </div>
-                    <?php endif; ?>
+                    <script>
+                        imgInp.onchange = evt => {
+                    const [file] = imgInp.files
+                    if (file) {
+                        blah.src = URL.createObjectURL(file)
+                        }
+                    }
+                    </script>
+                    <button type="submit" class="add-button">Tambah Produk</button>
                 </form>
             </section>
         </main>
