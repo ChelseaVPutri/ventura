@@ -9,13 +9,13 @@
 
 <body>
     <header>
-        <h1><?= $title; ?></h1>
+        <h1 style="color: #e74c3c"><?= $title; ?></h1>
     </header>
     <div class="container">
         <aside class="sidebar">
             <div class="user-info">
                 <p class="user-name"><?= $user['username']; ?></p>
-                <p class="user-email"><?= $user['admin_id']; ?></p>
+                <p class="user-email">ID admin: <?= $user['admin_id']; ?></p>
             </div>
             <?= $this->renderSection('content') ?>
         <aside class="highlights">

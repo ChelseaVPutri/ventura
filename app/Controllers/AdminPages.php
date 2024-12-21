@@ -19,7 +19,7 @@ class AdminPages extends BaseController
     public function dashboard() {
         if(session()->get('admin_session')){
             $data = [
-                'title'         => 'Dashboard Atmin',
+                'title'         => 'Dashboard Admin',
                 'css'           => 'admin_dashboard',
                 'total_product' => $this->productModel->countAll(),
                 'user'          => session()->get('admin_session')
@@ -83,7 +83,7 @@ class AdminPages extends BaseController
                     'admin_id' => $cek['admin_id'],
                     'is_admin' => true
                 ]);
-                return redirect()->to(base_url('admin/product-manager'));
+                return redirect()->to(base_url('admin/dashboard'));
             } else {
                 session()->setFlashdata('gagal', 'Username/Password salah');
                 return redirect()->to('admin/login');
