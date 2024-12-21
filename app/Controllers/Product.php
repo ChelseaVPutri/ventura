@@ -85,7 +85,7 @@ class Product extends BaseController {
         else
         {
             session()->setFlashdata('error', 'Gagal menghapus produk');
-            return redirect()->back();
+            return redirect()->to(base_url('admin/product-list'));
         }
     }
 }
