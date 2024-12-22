@@ -21,4 +21,12 @@ class ProductModel extends Model {
         return $this->like('category_id', $category)->findAll();
     }
 
+    public function filterstok($isAvailable) {
+        if ($isAvailable) {
+            return $this->where('stock >', 0)->findAll();
+        } else {
+            return $this->where('stock', 0)->findAll();
+        }
+    }
+
 }

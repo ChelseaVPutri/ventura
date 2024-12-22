@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Admin</title>
-    <link rel="stylesheet" href="<?= CSS.'add-product.css'; ?>">
+    <link rel="stylesheet" href="<?= CSS.'edit-product.css'; ?>">
     <link rel="icon" href="<?php echo ASSET.'logo.png'; ?>">
 </head>
 

@@ -110,4 +110,5 @@ class Product extends BaseController {
         ];
         return view('admin/edit_product', $data);
     }
+    
 }

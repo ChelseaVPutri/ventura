@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AdminModel;
 use App\Models\ProductModel;
+use App\Models\CategoryModel;
 
 class AdminPages extends BaseController
 {
@@ -54,16 +55,35 @@ class AdminPages extends BaseController
     }
  
     public function productlist() {
-        $productModel = new ProductModel();
+        $kategoriModel = new CategoryModel();
+        $keyword = $this->request->getGet('keyword');
+        $filter = $this->request->getGet('filter');
+        $available = $this->request->getGet('availability');
+
+        if($keyword){
+            $produk = $this->productModel->search($keyword);
+        } elseif ($available) {
+            if($available == 'available') {
+                $produk = $this->productModel->filterstok(true);
+            } elseif($available == 'habis') {
+                $produk = $this->productModel->filterstok(false);
+            }
+        } elseif($filter){
+            $produk = $this->productModel->filter($filter);
+        }else{
+            $produk = $this->productModel->findAll();
+        }
+
+        $kategori = $kategoriModel->findAll();
         if(session()->get('admin_session')){
             $data = [
                 'title'         => 'Daftar Produk',
-                'css'           => 'product-list',
-                'dataproduk'    => $this->productModel->findAll(),
-                'user'          => session()->get('admin_session'),
+                'dataproduk'    => $produk,
+                'kategori'      => $kategori,
+                'user'          => session()->get('admin_session')
             ];
             return view('admin/product_list', $data);
-        }else{
+        } else {
             session()->setFlashdata('null', 'anda belum login');
             return redirect()->to('admin/login');
         }
