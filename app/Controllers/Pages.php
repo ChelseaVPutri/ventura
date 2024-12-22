@@ -8,9 +8,12 @@ class Pages extends BaseController{
     public function home(){
         $kategori = new \App\Models\CategoryModel();
         $keyword = $this->request->getGet('keyword');
+        $filter = $this->request->getGet('filter');
 
         if($keyword){
             $produk = $this->productModel->search($keyword);
+        }elseif($filter){
+            $produk = $this->productModel->filter($filter);
         }else{
             $produk = $this->productModel->findAll();
         }
