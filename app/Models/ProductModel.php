@@ -14,7 +14,11 @@ class ProductModel extends Model {
     protected $createdField = 'created_at';
 
     public function search($keyword){
-        return $this->like('name', $keyword)->orLike('category_id', $keyword)->findAll();
+        return $this->like('name', $keyword)->findAll();
+    }
+
+    public function filter($category){
+        return $this->like('name', $category)->findAll();
     }
 
 }
