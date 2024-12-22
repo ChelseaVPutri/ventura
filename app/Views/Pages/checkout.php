@@ -46,7 +46,7 @@
                 <form action="product/checkout" id="checkout" method="post">
                     <div class="order-detail" style="margin-bottom: 15px">
                         <label for="ongkir">Metode Pengiriman</label>
-                        <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();">
+                        <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();" required>
                             <option value="" disabled selected>Pilih Pengiriman</option>
                             <option value="12000">Normal - Rp12.000</option>
                             <option value="15000">Kargo - Rp15.000</option>
@@ -54,28 +54,36 @@
                             <option value="50000">Same Day - Rp50.000</option>
                         </select>
                     </div>
+                    <div class="order-detail">
+                        <span>Total Harga (<?= $count; ?> barang)</span>
+                        <span>Rp<?= number_format($total, 0, ',', '.'); ?></span>
+                    </div>
+                    <div class="order-detail">
+                        <span>Total Asuransi Pengiriman</span>
+                        <span>Rp<?= number_format(1000, 0, ',', '.'); ?></span>
+                    </div>
+                    <div class="order-detail">
+                        <span>Total Biaya Proteksi</span>
+                        <span>Rp<?= number_format(2000, 0, ',', '.'); ?></span>
+                    </div>
+                    <div class="order-detail">
+                        <span>Ongkos Kirim</span>
+                        <span id="hargaOngkir">-</span>
+                    </div>
+                    <div class="total" style="margin-top: 15px">
+                        <span>Total Belanja</span>
+                        <span id="totalBelanja">Rp<?= number_format($total, 0, ',', '.'); ?></span>
+                    </div>
+                    <div class="order-detail" style="margin-bottom: 15px">
+                        <label for="payment">Metode Pembayaran</label>
+                        <select name="payment" id="bayar" aria-placeholder="Pilih Pembayaran" style="color: grey;" required>
+                            <option value="" disabled selected>Pilih Pembayaran</option>
+                            <option value="bank">Transfer Bank</option>
+                            <option value="ewallet">Transfer E-wallet</option>
+                        </select>
+                    </div>
+                    <button type="submit" for="checkout" class="payment-button">Checkout</button>
                 </form>
-                <div class="order-detail">
-                    <span>Total Harga (<?= $count; ?> barang)</span>
-                    <span>Rp<?= number_format($total, 0, ',', '.'); ?></span>
-                </div>
-                <div class="order-detail">
-                    <span>Total Asuransi Pengiriman</span>
-                    <span>Rp<?= number_format(1000, 0, ',', '.'); ?></span>
-                </div>
-                <div class="order-detail">
-                    <span>Total Biaya Proteksi</span>
-                    <span>Rp<?= number_format(2000, 0, ',', '.'); ?></span>
-                </div>
-                <div class="order-detail">
-                    <span>Ongkos Kirim</span>
-                    <span id="hargaOngkir">-</span>
-                </div>
-                <div class="total" style="margin-top: 15px">
-                    <span>Total Belanja</span>
-                    <span id="totalBelanja">Rp<?= number_format($total, 0, ',', '.'); ?></span>
-                </div>
-                <button type="submit" for="checkout" class="payment-button">Pilih Pembayaran</button>
             </section>
         </main>
     </div>
