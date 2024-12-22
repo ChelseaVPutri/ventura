@@ -64,12 +64,22 @@ class Product extends BaseController {
         // }
     }
 
-    protected function updproduct($id)
+    public function updproduct()
     {
+        $img = $this->request->getFile('imgInp');
+
+        $img->move('assets');
         $set = [
-            'id' => $id,
-            ''
+            'product_id' => $this->request->getPost('pdid'),
+            'name' => $this->request->getPost('name'),
+            'price' => $this->request->getPost('price'),
+            'stock' => $this->request->getPost('stock'),
+            'description' => $this->request->getPost('description'),
+            'category_id' => $this->request->getPost('kategori'),
+            'img' => $img->getName(),
         ];
+        $this->productModel->save($set);
+        return redirect('admin/product-list');
     }
 
     public function delproduct($id)

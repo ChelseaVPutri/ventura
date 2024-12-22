@@ -30,7 +30,7 @@
                     </select>
                     <input type="file" name="imgInp" id="imgInp" accept="image/*">
                     <div class="image-preview" id="image-preview">
-                        <img id="blah">
+                        <img class="blah" id="blah">
                     </div>
                     <script>
                         imgInp.onchange = evt => {
