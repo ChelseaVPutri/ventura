@@ -18,7 +18,7 @@ class ProductModel extends Model {
     }
 
     public function filter($category){
-        return $this->like('name', $category)->findAll();
+        return $this->like('category_id', $category)->findAll();
     }
 
 }
