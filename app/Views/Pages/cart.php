@@ -8,6 +8,35 @@
 <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
 </head>
 <style>
+.qty-container {
+    display: flex;
+    align-items: center;
+}
+
+.qty-decrement, .qty-increment {
+    background-color: #EA6932;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.qty-increment {
+    font-size: 14px;
+}
+
+.qty-input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
 .cart-summary {
     display: flex;
     flex-direction: column;
@@ -97,6 +126,13 @@
                             <p class="store-name"><?php echo $cd['name'] ?></p>
                         </div>
                         <div class="item-price">
+                            <!-- <form>
+                                <div class="qty-container">
+                                    <button type="button" class="qty-decrement" onclick="updateQty(this, -1, <//?= $cd['stock']; ?>)">-</button>
+                                    <input type="number" name="qty" class="qty-input" value="<//?= $usercart[$count]['qty']; ?>" min="1" max="<//?= $cd['stock']; ?>" readonly>
+                                    <button type="button" class="qty-increment" onclick="updateQty(this, 1, <//?= $cd['stock']; ?>)">+</button>
+                                </div>
+                            </form> -->
                             <p>Rp<?= number_format($cd['price'], 0, ',', '.'); ?> x <?= $usercart[$count]['qty'] ?> =</p>
                             <p class="total-price">Rp<?php $total = $cd['price'] * $usercart[$count]['qty'];echo number_format($total, 0, ',', '.'); ?></p>
                             <form action="<?= base_url('cart/delcart/'.$cd['product_id']); ?>" method="post">
