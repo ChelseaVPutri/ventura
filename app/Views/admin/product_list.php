@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title; ?></title>
     <link rel="stylesheet" href="<?= CSS . "admin-product-list.css" ?>">
+    <link rel="icon" href="<?= ASSET . "logo.png" ?>">
 </head>
 <style>
     .main-content {
@@ -31,6 +32,23 @@
         transition: transform 0.3s, box-shadow 0.3s;
     }
 
+    .filter-button {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .filter-button button {
+        padding: 10px 15px;
+        background-color: #EA6932;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
 
 </style>
 
@@ -48,7 +66,7 @@
             <nav class="menu">
                 <a href="dashboard" class="menu-item">Dashboard</a>
                 <a href="productmanager" class="menu-item">Tambah Produk</a>
-                <a href="product-list" class="menu-item active">Daftar Produk</a>
+                <a href="<?= base_url('admin/product-list') ?>" class="menu-item active">Daftar Produk</a>
                 <a href="#" class="menu-item">Daftar Pesanan</a>
                 <a href="#" class=  "menu-item">Pengaturan</a>
             </nav>
@@ -62,7 +80,25 @@
             }
             ?>
             <section class="product-search">
-                <input type="text" id="searchBar" placeholder="Cari Produk" onkeyup="filterProducts()" />
+                <form action="" method="get" id="filter">
+                    <input type="text" id="searchBar" placeholder="Cari Produk" name="keyword" onkeyup="cariProduk()" />
+                </form>
+                <div class="filter-button">
+                    <a href="<?= base_url('admin/product-list'); ?>">
+                        <button>Semua Produk</button>
+                    </a>
+                    <?php foreach($kategori as $k) :?>
+                         <a href="<?= base_url('/admin/product-list?filter=' . $k['category_id']); ?>">
+                            <button class="button-card"><?= $k['name']; ?></button>
+                        </a>
+                    <?php endforeach ?>
+                    <a href="<?= base_url('/admin/product-list?availability=available'); ?>">
+                        <button style="background-color: #2ecc71;">Stok Tersedia</button>
+                    </a>
+                    <a href="<?= base_url('/admin/product-list?availability=habis'); ?>">
+                        <button style="background-color: red;">Stok Habis</button>
+                    </a>
+                </div>
             </section>
             <section class="product-list"
             style="display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 20px;">
@@ -75,7 +111,9 @@
                         <div class="product-actions">
                             <a href="../Product/delproduct/<?= $p['product_id']; ?>"><button class="delete-button">Hapus</button></a>
                             <a href="<?= base_url('admin/product/detail/'.$p['product_id']); ?>"><button class="view-button">Lihat</button></a>
-                            <button class="stock-button">stock</button>
+                            <button class="stock-button" style="background-color: <?= $p['stock'] > 0 ? '#2ecc71' : 'red'; ?>;">
+                                <?= $p['stock'] > 0 ? $p['stock'] : 'Habis'; ?>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -83,5 +121,6 @@
             </section>
         </main>
         
-    </div>  
+    </div>
+</body>
 
