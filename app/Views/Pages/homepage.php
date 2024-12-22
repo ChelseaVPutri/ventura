@@ -66,7 +66,7 @@
       <button class="button-card">Semua Produk</button>
     </a>
     <?php foreach($kategori as $k) :?>
-      <a href="<?= base_url('/?keyword=' . $k['category_id']); ?>">
+      <a href="<?= base_url('/?filter=' . $k['category_id']); ?>">
         <button class="button-card"><?= $k['name']; ?></button>
       </a>
     <?php endforeach ?>
