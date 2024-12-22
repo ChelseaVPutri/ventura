@@ -8,6 +8,32 @@
   <title><?= $title ?></title>
 </head>
 <style>
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 kolom */
+      gap: 20px; /* Jarak antar kartu */
+      margin: 20px auto;
+      max-width: 1200px; /* Atur lebar maksimal */
+      justify-items: center;
+  }
+    .product-card {
+      width: 100%;
+      max-width: 200px;
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .product-card img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
     .category-container {
       display: flex;
       justify-content: center;

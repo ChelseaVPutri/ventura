@@ -35,7 +35,7 @@
                 
                 <?php //if(session()->get('is_login')): ?>
                 <div class="quantity-section">
-                    <form action="" method="post">
+                    <form action="<?= base_url('product/editproduct/'.$product['product_id']); ?>" method="post">
                         <button class="cart-button" name="add_cart">Edit Produk</button>
                     </form>
                 </div>

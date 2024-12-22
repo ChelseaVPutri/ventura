@@ -61,3 +61,4 @@ $routes->get('/admin/dashboard', 'AdminPages::dashboard');
 $routes->get('/admin/productmanager', 'AdminPages::managepd');
 $routes->get('admin/product-list', 'AdminPages::productlist');
 $routes->get('admin/product/detail/(:num)', 'Product::viewadmin/$1');
+$routes->get('admin/product/edit/(:num)', 'AdminPages::editproduct/$1');
