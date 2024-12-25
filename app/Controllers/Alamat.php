@@ -74,36 +74,24 @@ class Alamat extends BaseController {
     }
 
     public function updatePrimaryAddress() {
-        $request = $this->request;
-        
-        $name = $request->getPost('nama');
-        $phone = $request->getPost('telepon');
-        $address = $request->getPost('alamat_lengkap');
-        $kecamatan = $request->getPost('kecamatan');
-        $kelurahan = $request->getPost('kelurahan'); // Jika ada
-        $kota = $request->getPost('kota_kabupaten');
-        $provinsi = $request->getPost('provinsi');
-        $kodepos = $request->getPost('kode_pos');
-        $isPrimary = $request->getPost('is_primary');
-        $userId = $request->getPost('user_id');
+        $user_id = $this->request->getPost('user_id');
+        $alamat_id = $this->request->getPost('alamat_id');
 
-        if ($isPrimary) {
-            $this->model_alamat->where('user_id', $userId)->update(['is_primary' => false]);
-        }
+        $data = [
+            'user_id' => $user_id,
+            'nama' => $this->request->getPost('nama'),
+            'telepon' => $this->request->getPost('phone'),
+            'provinsi' => $this->request->getPost('provinsi'),
+            'kota_kabupaten' => $this->request->getPost('kota_kab'),
+            'kecamatan' => $this->request->getPost('kecamatan'),
+            'kelurahan' => $this->request->getPost('kelurahan'),
+            'kode_pos' => $this->request->getPost('kode_pos'),
+            'alamat_lengkap' => $this->request->getPost('alamat_lengkap'),
+            'is_primary' => 1,  // Menetapkan alamat sebagai utama
+        ];
 
-        $this->model_alamat->where('user_id', $userId)->where('is_primary', true)->set([
-            'nama' => $name,
-            'telepon' => $phone,
-            'alamat_lengkap' => $address,
-            'kecamatan' => $kecamatan,
-            'kelurahan' => $kelurahan,
-            'kota_kabupaten' => $kota,
-            'provinsi' => $provinsi,
-            'kode_pos' => $kodepos,
-            'is_primary' => $isPrimary
-        ])->update();
-
-        return $this->response->setJSON(['status' => 'success']);
-
+        $this->model_alamat->set(['is_primary' => 0])->where('user_id', $user_id)->update();
+        $this->model_alamat->update($alamat_id, $data);
+        return redirect()->to('/checkout');
     }
 }
