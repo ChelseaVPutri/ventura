@@ -72,4 +72,38 @@ class Alamat extends BaseController {
         $this->model_alamat->update($alamat_id, ['is_primary' => 1]);
         return redirect()->back();
     }
+
+    public function updatePrimaryAddress() {
+        $request = $this->request;
+        
+        $name = $request->getPost('nama');
+        $phone = $request->getPost('telepon');
+        $address = $request->getPost('alamat_lengkap');
+        $kecamatan = $request->getPost('kecamatan');
+        $kelurahan = $request->getPost('kelurahan'); // Jika ada
+        $kota = $request->getPost('kota_kabupaten');
+        $provinsi = $request->getPost('provinsi');
+        $kodepos = $request->getPost('kode_pos');
+        $isPrimary = $request->getPost('is_primary');
+        $userId = $request->getPost('user_id');
+
+        if ($isPrimary) {
+            $this->model_alamat->where('user_id', $userId)->update(['is_primary' => false]);
+        }
+
+        $this->model_alamat->where('user_id', $userId)->where('is_primary', true)->set([
+            'nama' => $name,
+            'telepon' => $phone,
+            'alamat_lengkap' => $address,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'kota_kabupaten' => $kota,
+            'provinsi' => $provinsi,
+            'kode_pos' => $kodepos,
+            'is_primary' => $isPrimary
+        ])->update();
+
+        return $this->response->setJSON(['status' => 'success']);
+
+    }
 }

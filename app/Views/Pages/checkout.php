@@ -63,7 +63,7 @@
 
     .name-and-phone {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     }
 
@@ -189,12 +189,15 @@
             <section class="left-section">
                 <div class="shipping-address">
                     <h2>Alamat Pengiriman</h2>
-                    <div class="address">
-                        <span class="icon">📍</span>
-                        <span>Rumah - Budi</span>
-                    </div>
-                    <p>Jl. Pramuka</p>
-
+                    <?php if($primary_address): ?>
+                        <div class="address">
+                            <!-- <span>Rumah - Budi</span> -->
+                            <span class="icon">📍</span>
+                            <span style="font-weight: bold;"><?= $primary_address['nama']; ?> - <?= $primary_address['telepon']; ?></span>
+                        </div>
+                        <p><?= $primary_address['alamat_lengkap'] ?></p>
+                        <p style="margin-bottom: 15px"><?= $primary_address['kecamatan'] ?>, <?= $primary_address['kota_kabupaten'] ?>, <?= $primary_address['provinsi'] ?>, <?= $primary_address['kode_pos'] ?></p>
+                    <?php endif; ?>
                     <button id="myButton" class="shipping-button">Ganti Alamat</button>
                     <div id="popupContainer" class="popup">
                         <div class="address-box">
@@ -202,38 +205,52 @@
                             <h1>Ganti Alamat</h1>
                             <div class="address-details">
                                 <div class="name-and-phone">
-                                    <h2>Budi</h2>
-                                    <span>(+62) 812 3456 7891</span>
-                                    <button id="myButton2" class="edit-button">Ubah</button>
+                                    <h2 style="margin-right: 15px"><?= $primary_address['nama'] ?></h2>
+                                    <p style="margin-right: 15px"><?= $primary_address['telepon'] ?></p>
+                                    <button
+                                        id="myButton2"
+                                        class="edit-button"
+                                        data-name="<?= $primary_address['nama'] ?>"
+                                        data-phone="<?= $primary_address['telepon'] ?>"
+                                        data-address="<?= $primary_address['alamat_lengkap'] ?>"
+                                        data-kelurahan="<?= $primary_address['kelurahan'] ?>"
+                                        data-kecamatan="<?= $primary_address['kecamatan'] ?>"
+                                        data-kota="<?= $primary_address['kota_kabupaten'] ?>"
+                                        data-provinsi="<?= $primary_address['provinsi']; ?>"
+                                        data-kodepos="<?= $primary_address['kode_pos']; ?>">
+                                    Ubah</button>
+                                    <!-- <button id="myButton2" class="edit-button" style="font-weight: bold">Ubah</button> -->
 
                                     <div id="popupContainer2" class="popup">
                                         <div class="edit-address-box">
                                             <h1>Ubah Alamat</h1>
-                                            <form>
+                                            <form id="editAddressForm" action="<?= base_url('/update-primary-address') ?>" method="post">
                                                 <div class="input-group">
-                                                    <input type="text" value="Budi" />
-                                                    <input type="text" value="(+62) 812 3456 7891" />
+                                                    <input type="text" id="popupName" />
+                                                    <input type="text" id="popupPhone" />
                                                 </div>
                                                 <div class="input-group">
-                                                    <input type="text" value="DKI JAKARTA"  />
-                                                    <input type="text" value="KOTA JAKARTA TIMUR"  />
+                                                    <input type="text" id="popupProvinsi"  />
+                                                    <input type="text" id="popupKota"  />
                                                 </div>
                                                 <div class="input-group">
-                                                    <input type="text" value="MAKASAR"  />
-                                                    <input type="text" value="KEBON PALA"  />
-                                                    <input type="text" value="13650"  />
+                                                    <input type="text" id="popupKelurahan"  />
+                                                    <input type="text" id="popupKecamatan"  />
+                                                    <input type="text" id="popupKodepos"  />
                                                 </div>
-                                                <textarea>jalan inpres no.40b, kebon pala, makasar jakarta timur, Makasar, Jakarta Timur, DKI Jakarta</textarea>
+                                                <textarea id="popupAddress"></textarea>
                                                 <div class="button-group">
                                                     <button id="closePopup2" type="button" class="back-button-box">Kembali</button>
-                                                    <button type="submit" class="ok-button-box">OK</but>
+                                                    <button type="submit" class="ok-button-box" id="saveChanges">Simpan</but>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                <p>jalan inpres no.40b, kebon pala, makasar jakarta timur, Makasar, Jakarta Timur, DKI Jakarta, 6281234567891</p>
-                                <p>MAKASAR, KOTA JAKARTA TIMUR, DKI JAKARTA, ID, 13650</p>
+                                <p><?= $primary_address['alamat_lengkap'] ?></p>
+                                <!-- <p>jalan inpres no.40b, kebon pala, makasar jakarta timur, Makasar, Jakarta Timur, DKI Jakarta, 6281234567891</p> -->
+                                 <p><?= $primary_address['kecamatan'] ?>, <?= $primary_address['kota_kabupaten'] ?>, <?= $primary_address['provinsi'] ?>, <?= $primary_address['kode_pos'] ?></p>
+                                <!-- <p>MAKASAR, KOTA JAKARTA TIMUR, DKI JAKARTA, ID, 13650</p> -->
                             </div>
 
                             <button id="myButton3" class="add-address-button">+ Tambah Alamat Baru</button>
@@ -338,9 +355,9 @@
         document.getElementById('popupContainer').classList.remove('show');
     });
 
-    document.getElementById('myButton2').addEventListener('click', function () {
-        document.getElementById('popupContainer2').classList.add('show');
-    });
+    // document.getElementById('myButton2').addEventListener('click', function () {
+    //     document.getElementById('popupContainer2').classList.add('show');
+    // });
 
     document.getElementById('closePopup2').addEventListener('click', function () {
         document.getElementById('popupContainer2').classList.remove('show');
@@ -352,6 +369,99 @@
 
     document.getElementById('closePopup3').addEventListener('click', function () {
         document.getElementById('popupContainer3').classList.remove('show');
+    });
+
+    const buttonEdit = document.getElementById('myButton2');
+    const popupContainer2 = document.getElementById('popupContainer2');
+    const primaryAddress = {
+        name: buttonEdit.getAttribute('data-name'),
+        phone: buttonEdit.getAttribute('data-phone'),
+        address: buttonEdit.getAttribute('data-address'),
+        kelurahan:buttonEdit.getAttribute('data-kelurahan'),
+        kecamatan: buttonEdit.getAttribute('data-kecamatan'),
+        kota: buttonEdit.getAttribute('data-kota'),
+        provinsi: buttonEdit.getAttribute('data-provinsi'),
+        kodepos: buttonEdit.getAttribute('data-kodepos'),
+    };
+
+    buttonEdit.addEventListener('click', function() {
+        
+        document.getElementById('popupName').value = primaryAddress.name;
+        document.getElementById('popupPhone').value = primaryAddress.phone;
+        document.getElementById('popupProvinsi').value = primaryAddress.provinsi;
+        document.getElementById('popupKota').value = primaryAddress.kota;
+        document.getElementById('popupKecamatan').value = primaryAddress.kecamatan;
+        document.getElementById('popupKelurahan').value = primaryAddress.kelurahan;
+        document.getElementById('popupKodepos').value = primaryAddress.kodepos;
+        document.getElementById('popupAddress').value = primaryAddress.address;
+        popupContainer2.classList.add('show');
+    });
+
+    document.getElementById('saveChanges').addEventListener('click', function() {
+        primaryAddress.name = document.getElementById('popupName').value;
+        primaryAddress.phone = document.getElementById('popupPhone').value;
+        primaryAddress.provinsi = document.getElementById('popupProvinsi').value;
+        primaryAddress.kota = document.getElementById('popupKota').value;
+        primaryAddress.kecamatan = document.getElementById('popupKecamatan').value;
+        primaryAddress.kelurahan = document.getElementById('popupKelurahan').value;
+        primaryAddress.kodepos = document.getElementById('popupKodepos').value;
+        primaryAddress.address = document.getElementById('popupAddress').value;
+
+        document.querySelector('.name-and-phone h2').textContent = primaryAddress.name;
+        document.querySelector('.name-and-phone span').textContent = primaryAddress.phone;
+        popupContainer2.classList.remove('show');
+    });
+
+    document.getElementById('editAddressForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var name = document.getElementById('popupName').value;
+        var phone = document.getElementById('popupPhone').value;
+        var address = document.getElementById('popupAddress').value;
+        var kelurahan =document.getElementById('popupKelurahan').value;
+        var kecamatan = document.getElementById('popupKecamatan').value;
+        var kota = document.getElementById('popupKota').value;
+        var provinsi = document.getElementById('popupProvinsi').value;
+        var kodepos = document.getElementById('popupKodepos').value;
+
+        fetch('/update-primary-address', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                nama: name,
+                telepon: phone,
+                provinsi: provinsi,
+                kota_kabupaten: kota,
+                kecamatan: kecamatan,
+                kelurahan: kelurahan,
+                kode_pos: kodepos,
+                alamat_lengkap: address,
+                is_primary: true
+            })
+        })
+        .then(response => response.json());
+        // .then(response => {
+        //     if(response.ok)  {
+        //         document.getElementById('myButton2').setAttribute('data-name', name);
+        //         document.getElementById('myButton2').setAttribute('data-phone', phone);
+        //         document.getElementById('myButton2').setAttribute('data-address', address);
+        //         document.getElementById('myButton2').setAttribute('data-kelurahan', kelurahan);
+        //         document.getElementById('myButton2').setAttribute('data-kecamatan', kecamatan);
+        //         document.getElementById('myButton2').setAttribute('data-kota', kota);
+        //         document.getElementById('myButton2').setAttribute('data-provinsi', provinsi);
+        //         document.getElementById('myButton2').setAttribute('data-kodepos', kodepos);
+
+        //         var popup = document.getElementById('popupContainer2');
+        //         popup.classList.remove('show');
+        //     } else {
+        //         console.error('Gagal memperbarui alamat primary');
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error('Terjadi kesalahan:', error);
+        // })
     });
 
     var total = <?= $total ?>;
