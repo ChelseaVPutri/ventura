@@ -51,7 +51,7 @@ $routes->post('/address/add-address', 'Alamat::addAddress');
 $routes->post('address/delete/(:num)', 'Alamat::delAddress/$1');
 $routes->get('address/edit-address/(:num)', 'Alamat::editAddress/$1');
 $routes->post('address/update/(:num)', 'Alamat::updateAddress/$1');
-$routes->get('address/primary/(:num)', 'Alamat::primaryAddress/$1');
+$routes->post('address/primary/(:num)', 'Alamat::primaryAddress/$1');
 $routes->get('/wishlist', 'Wishlist::index');
 $routes->post('wishlsit/addWishlist/(:num)', 'Wishlist::addWishlist/$product_id');
 $routes->get('wishlsit/delWishlist/(:num)', 'Wishlist::delWishlist/$product_id');

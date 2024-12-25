@@ -7,18 +7,6 @@
     <link rel="icon" href="<?= ASSET . 'logo.png'; ?>">
     <link rel="stylesheet" href="<?= CSS . 'daftar-alamat.css' ?>">
 </head>
-<style>
-    .primary-label {
-    background-color: #ff9900;
-    color: white;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    }
-</style>
 <body>
     <header>
         <a href="<?= base_url('/profile'); ?>">
@@ -33,6 +21,9 @@
         <?php else: ?>
             <?php foreach ($alamat as $a): ?>
                 <div class="address-item">
+                    <?php if($a['is_primary']): ?>
+                        <p style="color: #EA6932; font-weight: bold">Alamat Utama</p>
+                    <?php endif; ?>
                     <div class="address-header">
                         <h2><?= esc($a['nama']) ?></h2>
                         <span><?= esc($a['telepon']) ?></span>
@@ -47,6 +38,11 @@
                             <?php csrf_field() ?>
                             <button class="delete-button">Hapus</button>
                         </form>
+                        <?php if(!$a['is_primary']): ?>
+                            <form action="<?= base_url('address/primary/' . $a['alamat_id']) ?>" method="post">
+                                <button class="primary-button">Atur sebagai utama</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>

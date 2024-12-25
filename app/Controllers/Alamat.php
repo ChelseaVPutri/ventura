@@ -30,7 +30,7 @@ class Alamat extends BaseController {
             'kelurahan' => $this->request->getPost('kelurahan'),
             'kode_pos' => $this->request->getPost('kode_pos'),
             'alamat_lengkap' => $this->request->getPost('alamat_lengkap'),
-            'is_primary' => false
+            // 'is_primary' => false
         ];
         $this->model_alamat->save($data);
         return redirect()->back();
@@ -68,14 +68,8 @@ class Alamat extends BaseController {
 
     public function primaryAddress($alamat_id) {
         $user_id = session()->get('user_id');
-        $alamat = $this->model_alamat->where('user_id', $user_id)->where('alamat_id', $alamat_id)->first();
-
-        if (!$alamat) {
-            return redirect()->back()->with('error', 'Alamat tidak ditemukan.');
-        }
-        
-        $this->model_alamat->where('user_id', $user_id)->update(['is_primary', false]);
-        $this->model_alamat->update($alamat_id, ['is_primary', true]);
+        $this->model_alamat->set(['is_primary' => 0])->where('user_id', $user_id)->update();
+        $this->model_alamat->update($alamat_id, ['is_primary' => 1]);
         return redirect()->back();
     }
 }

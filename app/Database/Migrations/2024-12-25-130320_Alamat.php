@@ -58,6 +58,11 @@ class Alamat extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '300',
                 'null' => false
+            ],
+            'is_primary' => [
+                'type' => 'TINYINT',
+                'constraint' => 1,
+                'default' => 0
             ]
         ]);
 
