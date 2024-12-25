@@ -50,6 +50,10 @@ class Pages extends BaseController{
         return view('Pages/profile');
     }
 
+    public function alamat(){
+        return view('Pages/daftar-alamat');
+    }
+
     public function cart(){
 
     }

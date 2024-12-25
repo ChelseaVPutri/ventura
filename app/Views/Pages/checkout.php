@@ -242,19 +242,19 @@
                                     <h1>Tambah Alamat</h1>
                                     <form>
                                         <div class="input-group">
-                                            <input type="text" value="Nama Lengkap" />
-                                            <input type="text" value="Nomor Telefon" />
+                                            <input type="text" placeholder="Nama Lengkap" />
+                                            <input type="text" placeholder="Nomor Telefon" />
                                         </div>
                                         <div class="input-group">
-                                            <input type="text" value="Provinsi"  />
-                                            <input type="text" value="Kota"  />
+                                            <input type="text" placeholder="Provinsi"  />
+                                            <input type="text" placeholder="Kota"  />
                                         </div>
                                         <div class="input-group">
-                                            <input type="text" value="Kecamatan"  />
-                                            <input type="text" value="Kelurahan"  />
-                                            <input type="text" value="Kode Pos"  />
+                                            <input type="text" placeholder="Kecamatan"  />
+                                            <input type="text" placeholder="Kelurahan"  />
+                                            <input type="text" placeholder="Kode Pos"  />
                                         </div>
-                                        <textarea>Nama Jalan (detail alamat)</textarea>
+                                        <textarea placeholder="Nama Jalan (Detail Alamat)"></textarea>
                                         <div class="button-group">
                                             <button id="closePopup3" type="button" class="back-button-box">Kembali</button>
                                             <button type="submit" class="ok-button-box">OK</button>
@@ -284,16 +284,6 @@
             <section class="right-section order-summary">
                 <h2>Belanjaanmu</h2>
                 <form action="product/checkout" id="checkout" method="post">
-                    <div class="order-detail" style="margin-bottom: 15px">
-                        <label for="ongkir">Metode Pengiriman</label>
-                        <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();" required>
-                            <option value="" disabled selected>Pilih Pengiriman</option>
-                            <option value="12000">Normal - Rp12.000</option>
-                            <option value="15000">Kargo - Rp15.000</option>
-                            <option value="35000">Next Day - Rp35.000</option>
-                            <option value="50000">Same Day - Rp50.000</option>
-                        </select>
-                    </div>
                     <div class="order-detail">
                         <span>Total Harga (<?= $count; ?> barang)</span>
                         <span>Rp<?= number_format($total, 0, ',', '.'); ?></span>
@@ -320,6 +310,16 @@
                             <option value="" disabled selected>Pilih Pembayaran</option>
                             <option value="bank">Transfer Bank</option>
                             <option value="ewallet">Transfer E-wallet</option>
+                        </select>
+                    </div>
+                    <div class="order-detail" style="margin-bottom: 15px">
+                        <label for="ongkir">Metode Pengiriman</label>
+                        <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();" required>
+                            <option value="" disabled selected>Pilih Pengiriman</option>
+                            <option value="12000">Normal - Rp12.000</option>
+                            <option value="15000">Kargo - Rp15.000</option>
+                            <option value="35000">Next Day - Rp35.000</option>
+                            <option value="50000">Same Day - Rp50.000</option>
                         </select>
                     </div>
                     <button type="submit" for="checkout" class="payment-button">Checkout</button>
