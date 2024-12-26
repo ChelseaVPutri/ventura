@@ -105,7 +105,6 @@ class AdminPages extends BaseController
                 $listorder[$fetch][] = $order;
             }
         }
-        dd($listorder);
 
         $data = [
             'title'         => 'Daftar Pesanan',

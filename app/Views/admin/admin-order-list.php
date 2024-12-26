@@ -49,7 +49,7 @@
                                         <img src="<?= ASSET . $product['img']; ?>" alt="<?= $product['name']; ?>" class="item-image">
                                         <div class="item-details">
                                             <p><?= $product['name']; ?></p>
-                                            <p>Jumlah Product:<strong><?= $product['qty']; ?></strong></p>
+                                            <p>Jumlah Product: <strong><?= $product['qty']; ?></strong></p>
                                         </div>
                                     </div>
                                     <?php $totalproduk += (int)$product['price']; endforeach ?>
@@ -78,9 +78,9 @@
                         </div>
                     </div>
                     <div class="order-status">
-                        <label><input type="checkbox" <?= $order[0]['status'] == 1 ? "checked" : ""; ?>> Sedang Diproses</label>
-                        <label><input type="checkbox" <?= $order[0]['status'] == 2 ? "checked" : ""; ?>> Sedang Dikirim</label>
-                        <label><input type="checkbox" <?= $order[0]['status'] == 3 ? "checked" : ""; ?>> Pesanan Selesai</label>
+                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 1 ? "checked" : ""; ?>> Sedang Diproses</label>
+                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 2 ? "checked" : ""; ?>> Sedang Dikirim</label>
+                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 3 ? "checked" : ""; ?>> Pesanan Selesai</label>
                     </div>
                 </div>
             </section>
