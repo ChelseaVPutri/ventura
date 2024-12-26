@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\OrderModel;
+use App\Models\OrdersDetailModel;
 use App\Models\ProductModel;
 use App\Models\CartModel;
 use App\Models\AlamatModel;
@@ -12,12 +14,16 @@ class Cart extends BaseController{
     protected $cartbase;
     protected $prodbase;
     protected $model_alamat;
+    protected $order_model;
+    protected $order_detail_model;
 
     public function __construct()
     {
         $this->cartbase = new CartModel();
         $this->prodbase = new ProductModel();
         $this->model_alamat = new AlamatModel();
+        $this->order_model = new OrderModel();
+        $this->order_detail_model = new OrdersDetailModel();
     }
     
     public function index(){
@@ -150,6 +156,9 @@ class Cart extends BaseController{
     // }
 
     public function checkout(){
+        $order_model = new \App\Models\OrderModel();
+        $order_detail_model = new \App\Models\OrdersDetailModel();
+
         if(!session()->get('is_login')) {
             session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
             return redirect()->to('/login');
@@ -177,53 +186,118 @@ class Cart extends BaseController{
         return view('pages/checkout', $data);
     }
 
-    public function order(){
-        $cart = new \App\Models\CartModel();
-        $order = new \App\Models\OrderModel();
-        $orderdetail = new \App\Models\OrdersDetailModel();
+    public function order() {
+        $user_id = session()->get('user_id');
+        $primary_address = $this->model_alamat->where('user_id', $user_id)->where('is_primary', 1)->first();
+        $usercart = $this->cartbase->where('user_id', $user_id)->findAll();
 
-        if($this->request->getPost('ongkir') == '12000'){
-            $shipping = 'Normal';
-        }
-        if($this->request->getPost('ongkir') == '15000'){
-            $shipping = 'Kargo';
-        }
-        if($this->request->getPost('ongkir') == '35000'){
-            $shipping = 'Next Day';
-        }
-        if($this->request->getPost('ongkir') == '50000'){
-            $shipping = 'Same Day';
+        $products = [];
+        foreach ($usercart as $prod) {
+            $product = $this->prodbase->where('product_id', $prod['product_id'])->first();
+            $products[] = $product;
         }
 
-        $order->save
-        (
-            [
-                'uID'           => session()->get('user_id'),
-                'total'         => $this->request->getPost('totall'),
-                'status'        => 1,
-                'shipping'      => $shipping,
-                'payment'       => $this->request->getPost('payment'),
-            ]
-        );
-            
-        $usercart = $cart->where('user_id', session()->get('user_id'))->findAll();
-        foreach($usercart as $product){
-            $stock = $this->prodbase->select('stock')->where('product_id', $product['product_id'])->first();
+        $ongkir = $this->request->getPost('ongkir');
+        $payment = $this->request->getPost('payment');
+        $total = $this->request->getPost('totall');
 
-            $this->prodbase->update($product['product_id'],[
-                'stock' => (int)$stock['stock'] - (int)$product['qty'],
-            ] );
-            $data = [
-                'oID'           => $order->getInsertID(),
-                'pID'           => $product['product_id'],
-                'address'       => 'testing dlu brok',  // $this->request->getPost('address'),
-                'qty'           => $product['qty'],
+        $order_data = [
+            'uID' => $user_id,
+            'total' => $total,
+            'status' => 'Sedang Diproses',
+            'shipping' => $ongkir,
+            'payment' => $payment
+        ];
+        $this->order_model->insert($order_data);
+        $order_id = $this->order_model->getInsertID();
+
+        foreach($usercart as $prod) {
+            $product = $this->prodbase->where('product_id', $prod['product_id'])->first();
+            $order_detail = [
+                'oID' => $order_id,
+                'pID' => $prod['product_id'],
+                'address' => $primary_address['alamat_id'], // Alamat pengiriman
+                'qty' => $prod['qty']
             ];
+            $this->order_detail_model->insert($order_detail);
 
-            $orderdetail->save($data);
+            $new_stock = $product['stock'] - $prod['qty'];
+            $this->prodbase->update($product['product_id'], ['stock' => $new_stock]);
         }
-
-        $cart->where('user_id', session()->get('user_id'))->delete();
-        return redirect('/');
+        $this->cartbase->where('user_id', $user_id)->delete();
+        return redirect()->to('/orders');
     }
+
+   
+//     public function order(){
+//         $cart = new \App\Models\CartModel();
+//         $order = new \App\Models\OrderModel();
+//         $orderdetail = new \App\Models\OrdersDetailModel();
+    
+//         // Menentukan metode pengiriman berdasarkan ongkir yang dipilih
+//         if ($this->request->getPost('ongkir') == '12000') {
+//             $shipping = 'Normal';
+//         }
+//         if ($this->request->getPost('ongkir') == '15000') {
+//             $shipping = 'Kargo';
+//         }
+//         if ($this->request->getPost('ongkir') == '35000') {
+//             $shipping = 'Next Day';
+//         }
+//         if ($this->request->getPost('ongkir') == '50000') {
+//             $shipping = 'Same Day';
+//         }
+    
+//         // Menyimpan data order
+//         $order->save([
+//             'uID'       => session()->get('user_id'),
+//             'total'     => $this->request->getPost('totall'),
+//             'status'    => 1,
+//             'shipping'  => $shipping,
+//             'payment'   => $this->request->getPost('payment'),
+//         ]);
+    
+//         // Mengambil alamat utama pengguna
+//         $alamat = $this->model_alamat
+//                            ->where('user_id', session()->get('user_id'))
+//                            ->where('is_primary', 1)  // Asumsi ada kolom 'is_primary' yang menandakan alamat utama
+//                            ->get()
+//                            ->getRowArray();
+    
+//         // Jika alamat ditemukan
+//         if ($alamat) {
+//             $usercart = $cart->where('user_id', session()->get('user_id'))->findAll();
+//             $count = 0;
+    
+//             foreach ($usercart as $product) {
+//                 // Mengambil stok produk
+//                 $stock = $this->prodbase->select('stock')->where('product_id', $product['product_id'])->first();
+    
+//                 // Mengupdate stok produk setelah transaksi
+//                 $this->prodbase->update($product['product_id'], [
+//                     'stock' => (int)$stock['stock'] - (int)$product['qty'],
+//                 ]);
+    
+//                 // Menyimpan detail order ke dalam tabel ordersdetail
+//                 $data = [
+//                     'oID'       => $order->getInsertID(),
+//                     'pID'       => $product['product_id'],
+//                     'address'   => $alamat['alamat_id'], // Menggunakan alamat_id dari data alamat utama
+//                     'qty'       => $product['qty'],
+//                 ];
+    
+//                 $orderdetail->save($data);
+//             }
+    
+//             // Menghapus data di cart setelah pemesanan
+//             $cart->where('user_id', session()->get('user_id'))->delete();
+//         } else {
+//             // Jika tidak ada alamat utama ditemukan, Anda bisa memberikan pesan error atau menangani sesuai kebutuhan
+//             return redirect()->back()->with('error', 'Alamat utama tidak ditemukan.');
+//         }
+    
+//         // Redirect setelah pemesanan selesai
+//         return redirect('/');
+//     }
+    
 }

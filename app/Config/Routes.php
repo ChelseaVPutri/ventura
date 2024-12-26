@@ -62,6 +62,7 @@ $routes->get('product/(:segment)', 'Product::detail/$id');
 $routes->get('/cart', 'Cart::index');
 $routes->get('cart/delcart/(:num)', 'Cart::delcart/$product_id');
 $routes->get('/cart/clear', 'Cart::clearcart');
+$routes->get('/orders', 'Order::index'); 
 
 $routes->get('/admin/login', 'AdminPages::index');
 $routes->get('/admin/dashboard', 'AdminPages::dashboard');
@@ -71,3 +72,5 @@ $routes->get('admin/product-list', 'AdminPages::productlist');
 $routes->get('admin/product/detail/(:num)', 'Product::viewadmin/$1');
 $routes->get('admin/product/edit/(:num)', 'AdminPages::editproduct/$1');
 $routes->get('admin/logout', 'AdminPages::adminlogout');
+$routes->get('/admin/order-list', 'Order::adminIndex');
+$routes->post('/admin/update-status/(:num)', 'Order::updateStatus/$1');

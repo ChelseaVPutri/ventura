@@ -114,6 +114,39 @@ class AdminPages extends BaseController
         ];
 
         return view('admin/admin-order-list', $data);
+
+        // if(!session()->get('admin_session')){
+        //     session()->setFlashdata('null', 'anda belum login');
+        //     return redirect()->to('admin/login');
+        // }
+    
+        // $orderlist = new \App\Models\OrderModel();
+        // $detailperorder = $orderlist->join('ordersdetail', 'oID = order_id', 'inner')
+        //                             ->join('products', 'pID = product_id', 'inner')
+        //                             ->join('users', 'orders.uID = users.user_id', 'inner')  // Join dengan tabel users
+        //                             ->join('alamat', 'orders.uID = alamat.user_id', 'inner')  // Gunakan kolom yang benar untuk join dengan alamat
+        //                             ->findAll();
+    
+        // $listorder = [];
+        // $fetch = 0;
+    
+        // foreach($detailperorder as $order){
+        //     if($order['order_id'] == $fetch){
+        //         $listorder[$fetch][] = $order;
+        //     }else{
+        //         $fetch = (int)$order['order_id'];
+        //         $listorder[$fetch][] = $order;
+        //     }
+        // }
+    
+        // $data = [
+        //     'title'         => 'Daftar Pesanan',
+        //     'css'           => 'admin-order-list',
+        //     'user'          => session()->get('admin_session'),
+        //     'orderdetail'   => $listorder,
+        // ];
+    
+        // return view('admin/admin-order-list', $data);
     }
 
     public function loginadmin()

@@ -11,11 +11,11 @@ class Pages extends BaseController{
         $filter = $this->request->getGet('filter');
 
         if($keyword){
-            $produk = $this->productModel->search($keyword);
+            $produk = $this->productModel->search($keyword)->where('stock >', 0)->findAll();
         }elseif($filter){
-            $produk = $this->productModel->filter($filter);
+            $produk = $this->productModel->filter($filter)->where('stock >', 0)->findAll();
         }else{
-            $produk = $this->productModel->findAll();
+            $produk = $this->productModel->where('stock >', 0)->findAll();
         }
 
         // dd($keyword);

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List product</title>
+    <title>Daftar Pesanan</title>
     <link rel="stylesheet" href="<?= CSS . 'admin-order-list.css'; ?>">
 </head>
 
 <body>
     <header>
-        <h1>Daftar pesanan</h1>
+        <h1>Daftar Pesanan</h1>
     </header>
     <div class="container">
         <aside class="sidebar">
@@ -61,8 +61,8 @@
                                     <div class="actions">
                                         <div class="action-box">
                                             <h4>Pengiriman</h4>
-                                            <p><strong><?= $order[0]['shipping']; ?></strong></p>
-                                            <p>Estimasi tiba hari ini - 14 Dec</p>
+                                            <p><strong>Rp<?= number_format($order[0]['shipping'], 0, ',', '.'); ?></strong></p>
+                                            <!-- <p>Estimasi tiba hari ini - 14 Dec</p> -->
                                         </div>
                                         <div class="action-box">
                                             <h4>Pembayaran</h4>
@@ -106,20 +106,6 @@
             </script>
             <?php endforeach ?>
         </main>
-        <aside class="highlights">
-            <h2>Highlight</h2>
-            <p>Produk Terlaris Bulan Ini!</p>
-            <div class="highlight-item">
-                <img src="chair.png" alt="Product">
-                <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
-                <span>Terjual sebanyak 54</span>
-            </div>
-            <div class="highlight-item">
-                <img src="chair.png" alt="Product">
-                <p>Frasser Kursi Kantor Jaring Kursi Staff Kursi Kerja 800 Abu - 800 Abu</p>
-                <span>Terjual sebanyak 54</span>
-            </div>
-        </aside>
     </div>
 </body>
 </html>

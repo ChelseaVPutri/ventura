@@ -20,10 +20,15 @@
             <section class="left-section">
                 <div class="shipping-address">
                     <h2>Alamat Pengiriman</h2>
-                    <div class="address">
-                        <span class="icon">📍</span>
-                        <span>Rumah - Budi</span>
-                    </div>
+                    <?php if($primary_address): ?>
+                        <div class="address">
+                            <span class="icon">📍</span>
+                            <span style="font-weight: bold;"><?= $primary_address['nama']; ?> - <?= $primary_address['telepon']; ?></span>
+                            <!-- <span>Rumah - Budi</span> -->
+                        </div>
+                        <p><?= $primary_address['alamat_lengkap'] ?></p>
+                        <p style="margin-bottom: 15px"><?= $primary_address['kecamatan'] ?>, <?= $primary_address['kota_kabupaten'] ?>, <?= $primary_address['provinsi'] ?>, <?= $primary_address['kode_pos'] ?></p>
+                    <?php endif; ?>
                 </div>
                 <?php 
                 $count = 0;

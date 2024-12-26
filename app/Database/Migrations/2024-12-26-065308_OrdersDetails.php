@@ -30,8 +30,9 @@ class OrdersDetail extends Migration
                 ],
 
                 'address' => [
-                    'type'          => 'VARCHAR',
-                    'constraint'    => '255',
+                    'type'          => 'INT',
+                    'constraint'    => 11,
+                    'unsigned'      => true,
                 ],
 
                 'qty' => [
@@ -45,6 +46,7 @@ class OrdersDetail extends Migration
         $this->forge->addKey('od_id', true);
         $this->forge->addForeignKey('oID', 'orders', 'order_id');
         $this->forge->addForeignKey('pID', 'products', 'product_id');
+        $this->forge->addForeignKey('address', 'alamat', 'alamat_id');
         $this->forge->createTable('ordersdetail', true);
     }
 

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class OrdersDetailModel extends Model
 {
     protected $table            = 'ordersdetail';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'od_id';
     protected $useAutoIncrement = true;
     protected $allowedFields    = ['oID', 'pID', 'address', 'qty'];
 
