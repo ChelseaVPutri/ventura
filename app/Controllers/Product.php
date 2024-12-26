@@ -67,6 +67,9 @@ class Product extends BaseController {
     public function updproduct()
     {
         $img = $this->request->getFile('imgInp');
+        $oldimg = $this->productModel->select('img')->find($this->request->getPost('pdid'));
+
+        unlink('assets/' . $oldimg['img']);
 
         $img->move('assets');
         $set = [
@@ -88,7 +91,7 @@ class Product extends BaseController {
         $cartModel->where('product_id', $id)->delete();
         $img = $this->productModel->select('img')->where('product_id', $id)->first();
 
-        if($this->productModel->where('product_id', $id)->delete() and unlink('assets/' . $img['img']))
+        if($this->productModel->where('product_id', $id)->delete() || unlink('assets/' . $img['img']))
         {
             session()->setFlashdata('success', 'Dihapus');
             return redirect()->back();

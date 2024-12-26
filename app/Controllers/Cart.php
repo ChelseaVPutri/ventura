@@ -145,6 +145,7 @@ class Cart extends BaseController{
     //     $this->cartbase->where('product_id', $id)->set(['qty' => $newqty])->update();
     //     return;
     // }
+
     public function checkout(){
         if(!session()->get('is_login')) {
             session()->setFlashdata('eror', 'Silakan login terlebih dahulu');
@@ -167,5 +168,55 @@ class Cart extends BaseController{
 
 
         return view('pages/checkout', $data);
+    }
+
+    public function order(){
+        $cart = new \App\Models\CartModel();
+        $order = new \App\Models\OrderModel();
+        $orderdetail = new \App\Models\OrdersDetailModel();
+
+        if($this->request->getPost('ongkir') == '12000'){
+            $shipping = 'Normal';
+        }
+        if($this->request->getPost('ongkir') == '15000'){
+            $shipping = 'Kargo';
+        }
+        if($this->request->getPost('ongkir') == '35000'){
+            $shipping = 'Next Day';
+        }
+        if($this->request->getPost('ongkir') == '50000'){
+            $shipping = 'Same Day';
+        }
+
+        $order->save
+        (
+            [
+                'uID'           => session()->get('user_id'),
+                'total'         => $this->request->getPost('totall'),
+                'status'        => 1,
+                'shipping'      => $shipping,
+                'payment'       => $this->request->getPost('payment'),
+            ]
+        );
+            
+        $usercart = $cart->where('user_id', session()->get('user_id'))->findAll();
+        foreach($usercart as $product){
+            $stock = $this->prodbase->select('stock')->where('product_id', $product['product_id'])->first();
+
+            $this->prodbase->update($product['product_id'],[
+                'stock' => (int)$stock['stock'] - (int)$product['qty'],
+            ] );
+            $data = [
+                'oID'           => $order->getInsertID(),
+                'pID'           => $product['product_id'],
+                'address'       => 'testing dlu brok',  // $this->request->getPost('address'),
+                'qty'           => $product['qty'],
+            ];
+
+            $orderdetail->save($data);
+        }
+
+        $cart->where('user_id', session()->get('user_id'))->delete();
+        return redirect('/');
     }
 }

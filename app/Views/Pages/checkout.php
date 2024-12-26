@@ -36,14 +36,14 @@
                         <p style="font-weight: bold;"><?= $usercart[$count]['qty'] . ' x Rp' . number_format($product['price'], 0, ',', '.') ?></p>
                     </div>
                 </div>
-                <?php 
+                <?php
                 $total += $usercart[$count]['qty'] * $product['price'];
                 $count++; 
                 endforeach ?>
             </section>
             <section class="right-section order-summary">
                 <h2>Belanjaanmu</h2>
-                <form action="product/checkout" id="checkout" method="post">
+                <form action="order" id="checkout" method="post">
                     <div class="order-detail" style="margin-bottom: 15px">
                         <label for="ongkir">Metode Pengiriman</label>
                         <select name="ongkir" id="ongkir" aria-placeholder="Pilih Pengiriman" style="color: grey;" onchange="changeong();" required>
@@ -76,12 +76,14 @@
                     </div>
                     <div class="order-detail" style="margin-bottom: 15px">
                         <label for="payment">Metode Pembayaran</label>
-                        <select name="payment" id="bayar" aria-placeholder="Pilih Pembayaran" style="color: grey;" required>
+                        <select name="payment" id="payment" aria-placeholder="Pilih Pembayaran" style="color: grey;" required>
                             <option value="" disabled selected>Pilih Pembayaran</option>
-                            <option value="bank">Transfer Bank</option>
-                            <option value="ewallet">Transfer E-wallet</option>
+                            <option value="Transfer Bank">Transfer Bank</option>
+                            <option value="Transfer E-wallet">Transfer E-wallet</option>
+                            <option value="COD">COD</option>
                         </select>
                     </div>
+                    <input type="number" name="totall" id="totall" value="" hidden>
                     <button type="submit" for="checkout" class="payment-button">Checkout</button>
                 </form>
             </section>
@@ -104,5 +106,6 @@
 
         document.getElementById('hargaOngkir').innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(ongkir);
         document.getElementById('totalBelanja').innerHTML = Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalBelanja);
+        document.getElementById('totall').value = totalBelanja;
     }
 </script>

@@ -1,12 +1,12 @@
 <?= $this->extend('admin/layout'); ?>
 
 <?= $this->section('content'); ?>
-                <nav class="menu">
+            <nav class="menu">
                 <a href="dashboard" class="menu-item">Dashboard</a>
                 <a href="productmanager" class="menu-item active">Tambah Produk</a>
                 <a href="product-list" class="menu-item">Daftar Produk</a>
-                <a href="#" class="menu-item">Daftar Pesanan</a>
-                <a href="#" class="menu-item">Pengaturan</a>
+                <a href="order-list" class="menu-item">Daftar Pesanan</a>
+                <a href="logout" class="menu-item">Logout</a>
             </nav>
         </aside>
         <main class="main-content">

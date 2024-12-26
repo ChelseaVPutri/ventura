@@ -133,9 +133,13 @@ form select option {
 }
 
 .image-preview{
-    width: 300px; 
-    min-height: 100px;
+    width: 500px; 
+    min-height: 100%;
     border: 2px solid black;
+}
+
+.blah{
+    object-fit: fill;
 }
 
 .add-button {

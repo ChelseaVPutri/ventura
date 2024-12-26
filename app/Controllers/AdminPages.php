@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AdminModel;
-use App\Models\ProductModel;
 use App\Models\CategoryModel;
 
 class AdminPages extends BaseController
@@ -78,15 +77,44 @@ class AdminPages extends BaseController
         if(session()->get('admin_session')){
             $data = [
                 'title'         => 'Daftar Produk',
+                'user'          => session()->get('admin_session'),
                 'dataproduk'    => $produk,
                 'kategori'      => $kategori,
-                'user'          => session()->get('admin_session')
             ];
             return view('admin/product_list', $data);
         } else {
             session()->setFlashdata('null', 'anda belum login');
             return redirect()->to('admin/login');
         }
+    }
+
+    public function orderlist(){
+        if(!session()->get('admin_session')){
+            session()->setFlashdata('null', 'anda belum login');
+            return redirect()->to('admin/login');
+        }
+        $orderlist = new \App\Models\OrderModel();
+        $detailperorder = $orderlist->join('ordersdetail', 'oID = order_id', 'inner')->join('products', 'pID = product_id', 'inner')->findAll();
+        $listorder=[];
+        $fetch = 0;
+        foreach($detailperorder as $order){
+            if($order['order_id'] == $fetch){
+                $listorder[$fetch][] = $order;
+            }else{
+                $fetch = (int)$order['order_id'];
+                $listorder[$fetch][] = $order;
+            }
+        }
+        dd($listorder);
+
+        $data = [
+            'title'         => 'Daftar Pesanan',
+            'css'           => 'admin-order-list',
+            'user'          => session()->get('admin_session'),
+            'orderdetail'   => $listorder,
+        ];
+
+        return view('admin/admin-order-list', $data);
     }
 
     public function loginadmin()

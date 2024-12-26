@@ -66,9 +66,9 @@
             <nav class="menu">
                 <a href="dashboard" class="menu-item">Dashboard</a>
                 <a href="productmanager" class="menu-item">Tambah Produk</a>
-                <a href="<?= base_url('admin/product-list') ?>" class="menu-item active">Daftar Produk</a>
-                <a href="#" class="menu-item">Daftar Pesanan</a>
-                <a href="#" class=  "menu-item">Pengaturan</a>
+                <a href="product-list" class="menu-item active">Daftar Produk</a>
+                <a href="order-list" class="menu-item">Daftar Pesanan</a>
+                <a href="logout" class="menu-item">Logout</a>
             </nav>
         </aside>
         <main class="main-content" style="max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
