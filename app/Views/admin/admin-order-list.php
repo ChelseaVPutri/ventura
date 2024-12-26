@@ -9,7 +9,6 @@
 
 <body>
     <header>
-        <button class="back-button">←</button>
         <h1>Daftar pesanan</h1>
     </header>
     <div class="container">
@@ -33,8 +32,8 @@
                     <div class="order-details">
                         <div class="product-info">
                             <p>Order Invoice: <?= $order[0]['order_id']; ?></p>
-                            <button id="myButton" class="btn detail-btn">Detail Pesanan</button>
-                            <div id="popupContainer" class="popup">
+                            <button id="<?= $order[0]['order_id']; ?>" class="btn detail-btn">Detail Pesanan</button>
+                            <div id="pop<?= $order[0]['order_id']; ?>" class="popup">
                                 <div class="order-summary">
                                     <div class="header">
                                         <h2>Budi</h2>
@@ -71,19 +70,40 @@
                                         </div>
                                     </div>
                                     <div class="button-container">
-                                        <button id="closePopup" class="button-card">Close</button>
+                                        <button id="clspop<?= $order[0]['order_id']; ?>" class="button-card">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="order-status">
+                    <form class="order-status">
                             <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 1 ? "checked" : ""; ?>> Sedang Diproses</label>
                             <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 2 ? "checked" : ""; ?>> Sedang Dikirim</label>
                             <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 3 ? "checked" : ""; ?>> Pesanan Selesai</label>
-                    </div>
+                    </form>
                 </div>
             </section>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const myButton = document.getElementById("<?= $order[0]['order_id']; ?>");
+                    const popupContainer = document.getElementById("pop<?= $order[0]['order_id']; ?>");
+                    const closePopup = document.getElementById("clspop<?= $order[0]['order_id']; ?>");
+
+                    myButton.addEventListener("click", function () {
+                        popupContainer.classList.add("show");
+                    });
+
+                    closePopup.addEventListener("click", function () {
+                        popupContainer.classList.remove("show");
+                    });
+
+                    window.addEventListener("click", function (event) {
+                        if (event.target === popupContainer) {
+                            popupContainer.classList.remove("show");
+                        }
+                    });
+                });
+            </script>
             <?php endforeach ?>
         </main>
         <aside class="highlights">
@@ -101,26 +121,5 @@
             </div>
         </aside>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const myButton = document.getElementById("myButton");
-            const popupContainer = document.getElementById("popupContainer");
-            const closePopup = document.getElementById("closePopup");
-
-            myButton.addEventListener("click", function () {
-                popupContainer.classList.add("show");
-            });
-
-            closePopup.addEventListener("click", function () {
-                popupContainer.classList.remove("show");
-            });
-
-            window.addEventListener("click", function (event) {
-                if (event.target === popupContainer) {
-                    popupContainer.classList.remove("show");
-                }
-            });
-        });
-    </script>
 </body>
 </html>

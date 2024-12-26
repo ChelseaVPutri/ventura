@@ -9,7 +9,7 @@ class OrderModel extends Model
     protected $table            = 'orders';
     protected $primaryKey       = 'order_id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['uID', 'total', 'status'];
+    protected $allowedFields    = ['uID', 'total', 'status', 'shipping', 'payment'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
