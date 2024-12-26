@@ -76,10 +76,11 @@
                             </div>
                         </div>
                     </div>
-                    <form class="order-status">
-                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 1 ? "checked" : ""; ?>> Sedang Diproses</label>
-                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 2 ? "checked" : ""; ?>> Sedang Dikirim</label>
-                            <label><input type="radio" name="update" id="update" <?= $order[0]['status'] == 3 ? "checked" : ""; ?>> Pesanan Selesai</label>
+                    <form class="order-status" id="status" action="" method="get" onchange="submit()">
+                        <input type="number" name="pID" id="pID" value="<?= $order[0]['order_id']; ?>" hidden>
+                        <label><input type="radio" value="1" name="update" id="update" <?= $order[0]['status'] == 1 ? "checked" : ""; ?>> Sedang Diproses</label>
+                        <label><input type="radio" value="2" name="update" id="update" <?= $order[0]['status'] == 2 ? "checked" : ""; ?>> Sedang Dikirim</label>
+                        <label><input type="radio" value="3" name="update" id="update" <?= $order[0]['status'] == 3 ? "checked" : ""; ?>> Pesanan Selesai</label>
                     </form>
                 </div>
             </section>
@@ -121,5 +122,10 @@
             </div>
         </aside>
     </div>
+    <script>
+        function submit(){
+            document.getElementById('status').submit();
+        }
+    </script>
 </body>
 </html>

@@ -93,7 +93,13 @@ class AdminPages extends BaseController
             session()->setFlashdata('null', 'anda belum login');
             return redirect()->to('admin/login');
         }
+
         $orderlist = new \App\Models\OrderModel();
+
+        if($this->request->getGet('pID')){
+            $orderlist->update($this->request->getGet('pID'), ['status' => $this->request->getGet('update')]);
+        }
+
         $detailperorder = $orderlist->join('ordersdetail', 'oID = order_id', 'inner')->join('products', 'pID = product_id', 'inner')->findAll();
         $listorder=[];
         $fetch = 0;
