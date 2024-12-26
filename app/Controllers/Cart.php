@@ -5,16 +5,19 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\CartModel;
+use App\Models\AlamatModel;
 
 class Cart extends BaseController{
 
     protected $cartbase;
     protected $prodbase;
+    protected $model_alamat;
 
     public function __construct()
     {
         $this->cartbase = new CartModel();
         $this->prodbase = new ProductModel();
+        $this->model_alamat = new AlamatModel();
     }
     
     public function index(){
@@ -160,10 +163,14 @@ class Cart extends BaseController{
             $products[] = $product;
         }
 
+        $user_id = session()->get('user_id');
+        $primary_address = $this->model_alamat->where('user_id', $user_id)->where('is_primary', 1)->first();
+
         $data = [
             'title' => 'Keranjangmu',
             'dataprod' => $products,
             'usercart' => $usercart,
+            'primary_address' => $primary_address
         ];
 
 

@@ -1,0 +1,204 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'poppins';
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    justify-content: center;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.address-item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.address-item:last-child {
+    border-bottom: none;
+}
+
+.address-header {
+    display: flex;
+    align-items: center;
+}
+
+.address-header h2 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+.address-header span {
+    font-size: 14px;
+    color: #555;
+    margin-left: 10px;
+}
+
+.address-body {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.address-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.address-actions a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.address-actions a:hover {
+    text-decoration: underline;
+}
+
+.primary-button {
+    padding: 5px 10px;
+    border: 1px solid #ff9900;
+    background-color: #ff9900;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.edit-button {
+    padding: 5px 10px;
+    border: 1px solid #38b000;
+    background-color: #38b000;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-button {
+    padding: 5px 10px;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #EA6932;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    margin: 20px auto 0;
+    width: 200px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h2 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.popup-content input,
+.popup-content textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-actions button {
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.popup-actions .cancel {
+    background: #ccc;
+}
+
+.popup-actions .ok {
+    background: #EA6932;
+    color: #fff;
+}
+

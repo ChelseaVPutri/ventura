@@ -25,7 +25,7 @@ $session = session()->get('user_session');
       <a href="<?= base_url('/cart'); ?>" class="button1">Keranjang</a>
       <a href="<?= base_url('/wishlist'); ?>" class="button1">Wishlist</a>
       <a href="#" class="button1">Daftar Pesanan</a>
-      <a href="#" class="button1">Daftar Alamat</a>
+      <a href="<?= base_url('/address'); ?>" class="button1">Daftar Alamat</a>
       <a href="service/logout" class="button1">Logout</a>
     </div>
   </div>
